@@ -18,6 +18,15 @@ body {
   overflow: hidden;
   color: #fff;
   font-size: var(--font-size);
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   background-color: #222;
 }
 
@@ -49,4 +58,15 @@ body {
 
 .level:empty {
   display: none;
+}
+
+.App__fullscreen-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  height: 40px;
+  fill: white;
+  opacity: .35;
+  cursor: pointer;
 }
