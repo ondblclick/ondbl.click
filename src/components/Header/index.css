@@ -1,0 +1,13 @@
+.Header {
+  pointer-events: none;
+  display: flex;
+  padding: 10px;
+}
+
+.Header > * {
+  pointer-events: all;
+}
+
+.Header * + * {
+  margin-left: 10px;
+}

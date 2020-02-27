@@ -1,0 +1,12 @@
+.Button {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.Button:hover {
+  opacity: 0.7;
+}
+
+.Button--icon {
+  line-height: 0;
+}
