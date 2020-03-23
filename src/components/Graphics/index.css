@@ -3,17 +3,49 @@
   display: flex;
 }
 
-.Graphics__layers-container {
+.Graphics__layer-container {
   margin: auto;
   width: 80%;
   height: 80%;
   position: relative;
+  transition: all .05s ease;
+}
+
+.Graphics__layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+.Graphics__layer-container--perspective {
   transform-style: preserve-3d;
   transform-origin: center center;
-  transition: all .05s ease;
   transform:
     perspective(var(--perspective))
     rotateX(var(--deg-x))
     rotateY(var(--deg-y))
+    translateZ(0);
+}
+
+.Graphics__layer-container--perspective .Graphics__layer {
+  transform: translateZ(var(--translate-z));
+}
+
+.Graphics__layer-container--parallax-vertical .Graphics__layer {
+  transform: translateY(var(--translate-y));
+}
+
+.Graphics__layer-container--parallax-horizontal .Graphics__layer {
+  transform: translateX(var(--translate-x));
+}
+
+.Graphics__layer-container--parallax .Graphics__layer {
+  transform:
+    translateX(var(--translate-x))
+    translateY(var(--translate-y))
     translateZ(0);
 }

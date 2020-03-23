@@ -1,6 +1,7 @@
 .Button {
   display: inline-block;
   cursor: pointer;
+  user-select: none;
 }
 
 .Button:hover {
@@ -9,4 +10,16 @@
 
 .Button--icon {
   line-height: 0;
+}
+
+.Button--text {
+  padding: .3rem;
+}
+
+.Button--text.Button--active {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .15);
+}
+
+.Button[disabled] {
+  pointer-events: none;
 }

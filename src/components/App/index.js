@@ -1,11 +1,14 @@
 import React, { PureComponent } from 'react';
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react';
 
-import Header from '../Header';
-import Button from '../Button';
+import Devtools from '../Devtools';
 import PageHome from '../Page/Home';
-import PageSettings from '../Page/Settings';
 import PageDearEsther from '../Page/DearEsther';
+import PageFirewatch from '../Page/Firewatch';
+import { store, persistor } from '../../store';
+import history from '../../history';
 
 import './index.css';
 
@@ -24,60 +27,32 @@ document.addEventListener('mousemove', (e) => {
 
   const degX = (x - center.x) / rect.width * K;
   const degY = (y - center.y) / rect.height * K;
+  const translateX = (x - center.x) / rect.width * K;
+  const translateY = (y - center.y) / rect.height * K;
 
   vars.innerText = `:root {
     --deg-y: ${degX.toFixed(F)}deg;
     --deg-x: ${-degY.toFixed(F)}deg;
+    --translate-x-delta: ${translateX.toFixed(F)}px;
+    --translate-y-delta: ${translateY.toFixed(F)}px;
   }`;
 });
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = { fullscreen: false };
-  }
-
-  componentDidMount() {
-    document.addEventListener('fullscreenchange', this.onFullscreenChange);
-  }
-
-  onFullscreenChange = () => {
-    this.setState({ fullscreen: !!document.fullscreenElement });
-  }
-
-  onRequestFullscreen = () => {
-    document
-      .querySelector('body')
-      .requestFullscreen();
-  }
-
-  onExitFullscreen = () => {
-    document
-      .exitFullscreen();
-  }
-
   render() {
-    const { fullscreen } = this.state;
-
     return (
-      <HashRouter>
-        <Header>
-          <Button to="/home" glyph="Home" size={24} style={{ marginRight: 'auto' }} color='rgba(255,255,255,.15)' />
-          <Button to="/settings" glyph="Settings" size={24} color='rgba(255,255,255,.15)' />
-
-          {fullscreen
-            ? <Button onClick={this.onExitFullscreen} glyph="FullscreenExit" size={24} color='rgba(255,255,255,.15)' />
-            : <Button onClick={this.onRequestFullscreen} glyph="Fullscreen" size={24} color='rgba(255,255,255,.15)' />}
-        </Header>
-        <div className="Content">
-          <Switch>
-            <Route exact path="/" render={() => <Redirect to="/home" />} />
-            <Route exact path="/home" component={PageHome} />
-            <Route exact path="/settings" component={PageSettings} />
-            <Route exact path="/dear-esther" component={PageDearEsther} />
-          </Switch>
-        </div>
-      </HashRouter>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <HashRouter history={history}>
+            <Devtools />
+            <Switch>
+              <Route exact path="/" component={PageHome} />
+              <Route exact path="/dear-esther" component={PageDearEsther} />
+              <Route exact path="/firewatch" component={PageFirewatch} />
+            </Switch>
+          </HashRouter>
+        </PersistGate>
+      </Provider>
     );
   }
 }

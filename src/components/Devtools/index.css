@@ -1,0 +1,25 @@
+.Devtools {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 33.3%;
+  background: rgba(0, 0, 0, .5);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.Devtools__input {
+  border: 1px solid #999999;
+  background: none;
+  color: #999999;
+  padding: .5rem;
+  font-size: inherit;
+  border-radius: .25rem;
+  margin-top: auto;
+}
+
+.Devtools__input:focus {
+  outline: none;
+}

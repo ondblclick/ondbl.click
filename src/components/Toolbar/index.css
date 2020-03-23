@@ -1,0 +1,13 @@
+.Toolbar {
+  pointer-events: none;
+  display: flex;
+  padding: 10px;
+}
+
+.Toolbar > * {
+  pointer-events: all;
+}
+
+.Toolbar * + * {
+  margin-left: 10px;
+}

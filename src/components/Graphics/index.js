@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import './index.css';
 
@@ -6,7 +7,7 @@ class Graphics extends React.Component {
   static displayName = Graphics;
 
   render() {
-    const { children, style } = this.props;
+    const { children, style, type } = this.props;
 
     const layers = (Array.isArray(children) ? children : [children])
       .map((i) => {
@@ -23,9 +24,19 @@ class Graphics extends React.Component {
 
     return (
       <div className="Graphics" style={style}>
-        <div className="Graphics__layers-container">
+        <div className={classnames('Graphics__layer-container', `Graphics__layer-container--${type}`)}>
           {Object.entries(layers).map(([k, v]) => (
-            <div key={k} style={{ '--translate-z': `calc(var(--translate-z-delta) * ${k})` }} className="level">
+            <div key={k} style={{
+              'perspective': {
+                '--translate-z': `calc(var(--translate-z-delta) * ${k})` },
+              'parallax': {
+                '--translate-x': `calc(var(--translate-x-delta) * ${k})`,
+                '--translate-y': `calc(var(--translate-y-delta) * ${k})` },
+              'parallax-horizontal': {
+                '--translate-x': `calc(var(--translate-x-delta) * ${k})` },
+              'parallax-vertical': {
+                '--translate-y': `calc(var(--translate-y-delta) * ${k})` },
+            }[type]} className="Graphics__layer">
               {v.map((j) => j.props.children)}
             </div>
           ))}
