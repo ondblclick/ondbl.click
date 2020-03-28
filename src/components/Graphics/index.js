@@ -11,7 +11,7 @@ class Graphics extends React.Component {
 
     const layers = (Array.isArray(children) ? children : [children])
       .map((i) => {
-        return i.type.name === 'Layer'
+        return i.type.displayName === 'Layer'
           ? [i]
           : i.type === React.Fragment
             ? i.props.children
