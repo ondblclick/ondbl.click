@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import './index.css';
 
 class Graphics extends React.Component {
-  static displayName = Graphics;
+  static displayName = 'Graphics';
 
   render() {
     const { children, style, type } = this.props;

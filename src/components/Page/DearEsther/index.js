@@ -37,12 +37,15 @@ class PageDearEsther extends PureComponent {
           </Static>
           <Graphics style={{ flex: '2' }} type="perspective">
             <Layer l="1">
+              layer1
               <DearEsther1Svg width="100%" height="100%" fill="#000000" />
             </Layer>
             <Layer l="2">
+              layer2
               <DearEsther2Svg width="100%" height="100%" fill="#666666" />
             </Layer>
             <Layer l="3">
+              layer3
               <DearEsther3Svg width="100%" height="100%" fill="#FFFFFF" />
             </Layer>
           </Graphics>
