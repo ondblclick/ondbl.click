@@ -48,7 +48,9 @@ class Devtools extends Component {
     return (
       <div className="Devtools" style={{ backgroundColor }}>
         <div className="Devtools__log">
-          {[...messages].reverse().map((m, index) => <div key={`${m}-${index}`}>{m}</div>)}
+          {messages.length
+            ? [...messages].reverse().map((m, index) => <div key={`${m}-${index}`}>{m}</div>)
+            : <div>{'Empty.'}</div>}
         </div>
         <input
           ref={this.input}
