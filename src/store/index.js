@@ -20,6 +20,9 @@ const persistedReducer = persistReducer(persistConfig, (state, action) => {
   if (action.type === 'DEVTOOLS:CLEAR_MESSAGES')
     return { ...state, devtools_messages: ['Cleared.'] };
 
+  if (action.type === 'DEVTOOLS:SET_CONFIG_ITEM')
+    return { ...state, devtools_config_items: { ...state.devtools_config_items, ...action.payload } };
+
   return state;
 });
 

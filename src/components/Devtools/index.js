@@ -38,12 +38,13 @@ class Devtools extends Component {
   }
 
   render() {
+    const { backgroundColor, messages } = this.props;
     if (!this.state.active) return null;
 
     return (
-      <div className="Devtools">
+      <div className="Devtools" style={{ backgroundColor }}>
         <div className="Devtools__log">
-          {[...this.props.messages].reverse().map((m, index) => <div key={`${m}-${index}`}>{m}</div>)}
+          {[...messages].reverse().map((m, index) => <div key={`${m}-${index}`}>{m}</div>)}
         </div>
         <input ref={this.input} className="Devtools__input" type="text" autoFocus />
       </div>
@@ -55,4 +56,7 @@ Devtools.propTypes = {};
 
 Devtools.defaultProps = {};
 
-export default connect((s) => ({ messages: s.devtools_messages }))(Devtools);
+export default connect((s) => ({
+  messages: s.devtools_messages,
+  backgroundColor: s.devtools_config_items['devtools-background-color'],
+}))(Devtools);
