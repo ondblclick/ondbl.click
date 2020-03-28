@@ -70,5 +70,5 @@ Devtools.defaultProps = {};
 
 export default connect((s) => ({
   messages: s.devtools_messages,
-  backgroundColor: s.devtools_config_items['devtools-background-color'],
+  backgroundColor: s.devtools_config_items?.['devtools-background-color'],
 }))(Devtools);
