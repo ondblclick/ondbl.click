@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.aa48c1b7.chunk.css",
+    "main.js": "/static/js/main.892a2466.chunk.js",
+    "main.js.map": "/static/js/main.892a2466.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.1bbbc98a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.1bbbc98a.js.map",
+    "static/js/2.ac737194.chunk.js": "/static/js/2.ac737194.chunk.js",
+    "static/js/2.ac737194.chunk.js.map": "/static/js/2.ac737194.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.4c05e117269f4cdfbd5e2d731678e831.js": "/precache-manifest.4c05e117269f4cdfbd5e2d731678e831.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.aa48c1b7.chunk.css.map": "/static/css/main.aa48c1b7.chunk.css.map",
+    "static/js/2.ac737194.chunk.js.LICENSE": "/static/js/2.ac737194.chunk.js.LICENSE",
+    "static/media/dear-esther-1.aba7d134.svg": "/static/media/dear-esther-1.aba7d134.svg",
+    "static/media/dear-esther-2.68f6dde3.svg": "/static/media/dear-esther-2.68f6dde3.svg",
+    "static/media/dear-esther-3.f5785800.svg": "/static/media/dear-esther-3.f5785800.svg",
+    "static/media/fullscreen-24px.9176b578.svg": "/static/media/fullscreen-24px.9176b578.svg",
+    "static/media/fullscreen_exit-24px.578b7cb1.svg": "/static/media/fullscreen_exit-24px.578b7cb1.svg",
+    "static/media/home-24px.e24c8e23.svg": "/static/media/home-24px.e24c8e23.svg",
+    "static/media/settings-24px.a476ae58.svg": "/static/media/settings-24px.a476ae58.svg",
+    "static/media/volume_off-24px.43a3aab2.svg": "/static/media/volume_off-24px.43a3aab2.svg",
+    "static/media/volume_up-24px.4944b489.svg": "/static/media/volume_up-24px.4944b489.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1bbbc98a.js",
+    "static/js/2.ac737194.chunk.js",
+    "static/css/main.aa48c1b7.chunk.css",
+    "static/js/main.892a2466.chunk.js"
+  ]
+}
