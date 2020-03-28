@@ -1,9 +1,16 @@
 import history from '../history';
 
 export default store => next => action => {
-  if (action.type === 'DEVTOOLS:MESSAGE') {
-    const match = action.payload.match(/goto\s(.*)/);
-    if (match) history.push(match[1]);
+  if (action.type === 'DEVTOOLS:COMMAND') {
+    const args = action.payload.split(' ');
+    store.dispatch({ type: 'DEVTOOLS:MESSAGE', payload: `> ${action.payload}` });
+
+    if (args[0] === 'goto') {
+      history.push(args[1]);
+      store.dispatch({ type: 'DEVTOOLS:MESSAGE', payload: `Navigated to ${args[1]}` });
+    } else if (action.payload) {
+      store.dispatch({ type: 'DEVTOOLS:MESSAGE', payload: `Unknown command: ${action.payload}` });
+    }
 
     return;
   }

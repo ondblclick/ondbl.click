@@ -23,12 +23,16 @@ class Devtools extends Component {
       e.preventDefault();
       return this.setState({ active: true });
     }
-    if (e.keyCode === 27 && this.state.active) {
+    if (e.keyCode === 192 && this.state.active) {
       return this.setState({ active: false });
     }
     if (e.keyCode === 13 && this.state.active) {
-      this.props.dispatch({ type: 'DEVTOOLS:MESSAGE', payload: this.input.current.value });
+      this.props.dispatch({ type: 'DEVTOOLS:COMMAND', payload: this.input.current.value });
       this.input.current.value = '';
+      return;
+    }
+    if (e.keyCode === 75 && e.metaKey) {
+      this.props.dispatch({ type: 'DEVTOOLS:CLEAR_MESSAGES' });
       return;
     }
   }
@@ -38,6 +42,9 @@ class Devtools extends Component {
 
     return (
       <div className="Devtools">
+        <div className="Devtools__log">
+          {[...this.props.messages].reverse().map((m, index) => <div key={`${m}-${index}`}>{m}</div>)}
+        </div>
         <input ref={this.input} className="Devtools__input" type="text" autoFocus />
       </div>
     );
@@ -48,4 +55,4 @@ Devtools.propTypes = {};
 
 Devtools.defaultProps = {};
 
-export default connect()(Devtools);
+export default connect((s) => ({ messages: s.devtools_messages }))(Devtools);
