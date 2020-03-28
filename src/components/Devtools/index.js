@@ -18,6 +18,10 @@ class Devtools extends Component {
     document.removeEventListener('keydown', this.onKeyDown);
   }
 
+  onInputBlur = () => {
+    this.input.current.focus();
+  }
+
   onKeyDown = (e) => {
     if (e.keyCode === 192 && !this.state.active) {
       e.preventDefault();
@@ -46,7 +50,13 @@ class Devtools extends Component {
         <div className="Devtools__log">
           {[...messages].reverse().map((m, index) => <div key={`${m}-${index}`}>{m}</div>)}
         </div>
-        <input ref={this.input} className="Devtools__input" type="text" autoFocus />
+        <input
+          ref={this.input}
+          className="Devtools__input"
+          type="text"
+          autoFocus
+          onBlur={this.onInputBlur}
+        />
       </div>
     );
   }

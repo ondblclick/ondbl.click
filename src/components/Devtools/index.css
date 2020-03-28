@@ -11,13 +11,15 @@
 }
 
 .Devtools__input {
-  border: 1px solid #AAAAAA;
   background: none;
   color: #AAAAAA;
-  padding: .5rem;
   font-size: inherit;
   border-radius: .25rem;
   font-family: monospace;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  line-height: 25px;
 }
 
 .Devtools__input:focus {
@@ -28,6 +30,12 @@
   font-family: monospace;
   font-size: inherit;
   color: #AAAAAA;
-  padding: calc(.5rem + 1px);
   white-space: pre;
+}
+
+.Devtools__log div {
+  line-height: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
