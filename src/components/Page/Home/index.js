@@ -15,7 +15,7 @@ class PageHome extends PureComponent {
 
         <Main>
           <Static style={{ flex: '1' }}>
-            {'Hi there. This is just a memory journey.'}
+            {'This is just a memory journey.'}
           </Static>
         </Main>
 
