@@ -1,11 +1,50 @@
-/*
+export default {
+  1:  { n:  2, m: 'Hello? Is anybody there?', author: 'H' },
+  2:  { n:  3, m: 'Hi. Yeah, it\'s me', author: 'D' },
+  3:  { n:  4, m: 'You\'re not here.', author: 'H' },
+  4:  { n:  5, m: 'No…', author: 'D' },
+  5:  { n:  6, m: 'Don\'t be mad', author: 'D' },
+  6:  {        m: ['I am. -> 7', 'I\'m not. -> 22', 'I\'m disappointed. -> 27'] },
+  7:  { n:  8, m: 'I am.', author: 'H' },
+  8:  { n:  9, m: 'Well I couldn\'t be out there another minute.', author: 'D' },
+  9:  { n: 10, m: 'Not ANOTHER minute? Come on.', author: 'H' },
+  10: { n: 11, m: 'Henry, how did you feel when you left Boulder to come out here?', author: 'D' },
+  11: { n: 12, m: 'Like I couldn\'t get here fast enough.', author: 'H' },
+  12: { n: 13, m: 'Exactly. That\'s how I\'ve felt for the past 24 hours.', author: 'D' },
+  13: { n: 14, m: 'Well, I\'m still mad.', author: 'H' },
+  14: { n: 15, m: 'But you understand?', author: 'D' },
+  15: {        m: ['Yes. -> 16', 'No. -> 17', 'It doesn\'t matter. -> 20'] },
+  16: { n: 37, m: 'Sure. Yeah.', author: 'H' },
+  17: { n: 18, m: 'Not really. It was just a few minutes.', author: 'H' },
+  18: { n: 19, m: 'I\'m sorry.', author: 'D' },
+  19: { n: 37, m: 'It\'s alright.', author: 'H' },
+  20: { n: 21, m: 'Eh, what\'s it matter if I do?', author: 'H' },
+  21: { n: 37, m: 'Well, I\'m sorry anyway.', author: 'D' },
+  22: { n: 23, m: 'I\'m not.', author: 'H' },
+  23: { n: 24, m: 'I just couldn\'t be out there for another minute.', author: 'D' },
+  24: { n: 25, m: 'I get it.', author: 'H' },
+  25: { n: 26, m: 'You… you do?', author: 'D' },
+  26: { n: 37, m: 'I think so.', author: 'H' },
+  27: { n: 28, m: 'I\'m not mad, I\'m just—', author: 'H' },
+  28: { n: 29, m: 'You\'re not mad, you\'re just disappointed?', author: 'D' },
+  29: { n: 30, m: 'I\'m not your dad after you got busted smoking pot.', author: 'H' },
+  30: { n: 31, m: 'I just couldn\'t be out there for another minute.', author: 'D' },
+  31: { n: 32, m: 'You could\'ve just said that.', author: 'H' },
+  32: { n: 33, m: 'You really wanted me to stay.', author: 'D' },
+  33: { n: 34, m: 'I did, and now I\'m—', author: 'H' },
+  34: { n: 35, m: 'Disappointed.', author: 'D' },
+  35: { n: 36, m: 'Yeah.', author: 'H' },
+  36: { n: 37, m: 'I know.', author: 'D' },
+  37: null,
+}
 
+/*
 === Part 1
 
 H: Hello? Is anybody there?
 D: Hi. Yeah, it's me.
 H You're not here.
-D: No...
+D: No…
 D: Don't be mad.
 
 H: I am. -> I am.
@@ -23,8 +62,8 @@ H: I am. -> I am.
     D: I'm sorry.
     H: It's alright.
 
-  H: It doesn't matter. ->
-    D???
+  H: It doesn't matter. -> Eh, what's it matter if I do?
+    D: Well, I'm sorry anyway.
 
 H: I'm not. -> I'm not.
   D: I just couldn't be out there for another minute.
@@ -62,7 +101,7 @@ D: Tell you what: why don't you choose me for me, and I'll choose you for you.
 H: Ha. Alright, sure. Maybe…
 
 H: Come to Boulder with me. -> Maybe you could come back to Boulder with me and figure it out down there.
-  D: Um...
+  D: Um…
   H: Just… just a thought.
   D: You don't want me down there.
   H: Well, I just asked you.
@@ -90,7 +129,7 @@ D: You gotta go see her.
 
 H: Would you? -> Would you? {same as below}
 H: Yeah, sure. -> Yeah, sure. {same as below}
-H: ... ->
+H: … ->
   D: Henry… I. You came out to put your memories behind you and they're still right there in front of you.
 
   H: I'll go see her. -> You're right. I mean… I think you're right.
