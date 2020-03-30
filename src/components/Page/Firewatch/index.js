@@ -1,3 +1,50 @@
+/*
+https://steamuserimages-a.akamaihd.net/ugc/314493598656486541/231801914C8BC78ACB63A274CB2D493796DACA77/
+https://imgur.com/OqtTZft
+http://i.imgur.com/OyLdVUL.png
+http://i.imgur.com/3sWcCVT.jpg
+http://i.imgur.com/DsDQMjx.jpg
+https://imgur.com/RMiKp8M
+http://i.imgur.com/3sWcCVT.jpg
+http://i.imgur.com/CNRK0Og.jpg
+http://i.imgur.com/PNpB8M7.jpg
+
+https://firewatch.fandom.com/ru/wiki/%D0%A0%D0%B8%D1%81%D1%83%D0%BD%D0%BE%D0%BA_%D0%94%D0%B5%D0%BB%D0%B0%D0%B9%D0%BB%D1%8B
+есть всегда:
+  # вся правая часть
+  # медведь слева вверху
+  # узор в левом верхнем углу
+злой генри
+- we are not so different you and i http://i.imgur.com/DsDQMjx.jpg
+- burt + turt https://imgur.com/RMiKp8M
+черепашка:
+  - hi I'm bucket jr https://steamcommunity.com/sharedfiles/filedetails/?id=961610964
+  - hi i'm turt https://steamuserimages-a.akamaihd.net/ugc/314493598656486541/231801914C8BC78ACB63A274CB2D493796DACA77/
+варианты:
+  одежда:
+    # шорты и пиджак
+    # шорты и курточка
+    # шорты и рубашка
+  голова:
+    волосы:
+      - причесанные
+      - более длинные волосы
+      - длинные с кепкой
+    борода:
+      - есть
+      - нету
+    - скулы + улыбка + специфический нос
+    - скулы + усики + пухлые губы + другой нос + шрам?
+
+    - узкие веселые глаза
+    - уставшие открытые глаза
+    - зажмуренные без бровей
+    - зажмуренные с бровями
+
+    - закрученные усы с острым носом
+    - кустистые усы с носом
+*/
+
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
