@@ -22,7 +22,7 @@ class Chat extends PureComponent {
   }
 
   get next() {
-    return this.props.chat.find((i) => i.id === this.current.next);
+    return this.props.chat.find((i) => i.id === (this.current.next || (this.current.id + 1)));
   }
 
   onKeyDown = (e) => {
