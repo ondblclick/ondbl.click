@@ -4,7 +4,7 @@ import { isArray } from 'lodash-es';
 class Chat extends PureComponent {
   constructor(props) {
     super(props);
-    const current = props.chat.find((i) => i.id === 1);
+    const current = this.find(1);
 
     this.state = { current, messages: [current] };
   }
@@ -22,7 +22,13 @@ class Chat extends PureComponent {
   }
 
   get next() {
-    return this.props.chat.find((i) => i.id === (this.current.next || (this.current.id + 1)));
+    const id = this.current.next || (this.current.id + 1);
+
+    return this.find(id);
+  }
+
+  find = (id) => {
+    return this.props.chat.find(i => i.id === id);
   }
 
   onKeyDown = (e) => {
@@ -68,14 +74,14 @@ class Chat extends PureComponent {
           this.next.message.map((o) => (
             <button
               key={o}
-              onClick={() => this.onChange(this.props.chat.find(i => i.id === parseInt(o.split(' -> ')[1], 10)))}
+              onClick={() => this.onChange(this.find(this.find(o).next))}
               style={{
                 padding: '.5rem',
                 border: '1px solid #ccc',
                 color: '#fff'
               }}
             >
-              {o.split(' -> ')[0]}
+              {this.find(o).message}
             </button>
           ))
         )}
