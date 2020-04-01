@@ -25,7 +25,7 @@ class PageFirewatch extends PureComponent {
         <Header audio={this._audio} />
 
         <Main>
-          <Static style={{ display: 'flex', alignItems: 'center', flex: '1' }}>
+          <Static style={{ display: 'flex', alignItems: 'center', flex: '1', flexDirection: 'column', justifyContent: 'flex-end' }}>
             <Chat chat={chat} />
           </Static>
           <Graphics style={{ flex: '2' }} type="parallax">

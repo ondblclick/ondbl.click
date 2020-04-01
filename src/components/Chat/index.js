@@ -54,18 +54,20 @@ class Chat extends PureComponent {
           width: '100%',
         }}
       >
-        {[...this.state.messages].reverse().map((m) => (
+        {[...this.state.messages].reverse().map((m, i, a) => (
           <div
             key={m.message}
             style={{
               alignSelf: m.author === 'D' ? 'flex-start' : 'flex-end',
               marginLeft: m.author === 'D' ? 0 : '4rem',
               marginRight: m.author === 'D' ? '4rem' : 0,
+              backgroundColor: m.author === 'D' ? 'rgba(255,255,255,.15)' : 'rgba(0,0,0,.15)',
               display: 'inline-block',
               marginBottom: '1rem',
               border: '1px solid #ccc',
               padding: '.5rem 1rem',
-              borderRadius: '.5rem' }}
+              borderRadius: '.5rem',
+              opacity: 1 - (a.length - i) / 15 }}
           >
             {m.message}
           </div>
