@@ -34,9 +34,17 @@ class Chat extends PureComponent {
   onKeyDown = (e) => {
     if (e.keyCode === 32) {
       if (isArray(this.next.message)) return;
+      if (this.next.message === null) return this.onReset();
 
-      this.onChange(this.next);
+      return this.onChange(this.next);
     }
+  }
+
+  onReset = () => {
+    const current = this.find(1);
+    this.setState((s) => ({
+      current,
+      messages: [current] }));
   }
 
   onChange = (item) => {
@@ -72,21 +80,23 @@ class Chat extends PureComponent {
             {m.message}
           </div>
         ))}
-        {isArray(this.next.message) && (
-          this.next.message.map((o) => (
-            <button
-              key={o}
-              onClick={() => this.onChange(this.find(this.find(o).next))}
-              style={{
-                padding: '.5rem',
-                border: '1px solid #ccc',
-                color: '#fff'
-              }}
-            >
-              {this.find(o).message}
-            </button>
-          ))
-        )}
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          {isArray(this.next.message) && (
+            this.next.message.map((o) => (
+              <button
+                key={o}
+                onClick={() => this.onChange(this.find(this.find(o).next))}
+                style={{
+                  padding: '.5rem',
+                  border: '1px solid #ccc',
+                  color: '#fff'
+                }}
+              >
+                {this.find(o).message}
+              </button>
+            ))
+          )}
+        </div>
       </div>
     );
   }

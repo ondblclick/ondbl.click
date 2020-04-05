@@ -123,7 +123,7 @@ export default [
   { id: 100,            message: 'God, this got dark.', author: 'H' },
   { id: 101,            message: 'No shit. Sorry.', author: 'D' },
 
-  { id: 102, next: null },
+  { id: 102,            message: null },
 
   // options
   { id: 103, next: 7,   message: 'I am.' },

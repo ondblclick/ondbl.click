@@ -10,9 +10,7 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import Chat from '../../Chat';
 import withVariables from '../../../hocs/withVariables';
-import { ReactComponent as DearEsther1Svg } from './dear-esther-1.svg';
-import { ReactComponent as DearEsther2Svg } from './dear-esther-2.svg';
-import { ReactComponent as DearEsther3Svg } from './dear-esther-3.svg';
+import { ReactComponent as HenrySvg } from './henry.svg';
 import _audio from './01.mp3';
 import chat from './chat';
 
@@ -28,15 +26,9 @@ class PageFirewatch extends PureComponent {
           <Static style={{ display: 'flex', alignItems: 'center', flex: '1', flexDirection: 'column', justifyContent: 'flex-end' }}>
             <Chat chat={chat} />
           </Static>
-          <Graphics style={{ flex: '2' }} type="parallax">
+          <Graphics style={{ flex: '2' }} type="perspective">
             <Layer l="1">
-              <DearEsther1Svg width="100%" height="100%" fill="#000000" />
-            </Layer>
-            <Layer l="2">
-              <DearEsther2Svg width="100%" height="100%" fill="#666666" />
-            </Layer>
-            <Layer l="3">
-              <DearEsther3Svg width="100%" height="100%" fill="#FFFFFF" />
+              <HenrySvg width="100%" height="100%" fill="#000000" />
             </Layer>
           </Graphics>
         </Main>
