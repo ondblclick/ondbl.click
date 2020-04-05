@@ -34,23 +34,16 @@ class Chat extends PureComponent {
   onKeyDown = (e) => {
     if (e.keyCode === 32) {
       if (isArray(this.next.message)) return;
-      if (this.next.message === null) return this.onReset();
+      if (this.next.message === '/CLEAR') return this.onChange(this.find(this.next.next), []);
 
       return this.onChange(this.next);
     }
   }
 
-  onReset = () => {
-    const current = this.find(1);
-    this.setState((s) => ({
-      current,
-      messages: [current] }));
-  }
-
-  onChange = (item) => {
+  onChange = (item, messages = undefined) => {
     this.setState((s) => ({
       current: item,
-      messages: [item, ...s.messages] }));
+      messages: [item, ...(messages || s.messages)] }));
   }
 
   render() {

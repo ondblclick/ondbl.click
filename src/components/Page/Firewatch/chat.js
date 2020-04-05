@@ -1,4 +1,5 @@
 export default [
+  // lines
   { id: 1,              message: 'Hello? Is anybody there?', author: 'H' },
   { id: 2,              message: 'Hi. Yeah, it\'s me', author: 'D' },
   { id: 3,              message: 'You\'re not here.', author: 'H' },
@@ -123,7 +124,8 @@ export default [
   { id: 100,            message: 'God, this got dark.', author: 'H' },
   { id: 101,            message: 'No shit. Sorry.', author: 'D' },
 
-  { id: 102,            message: null },
+  // finish
+  { id: 102, next: 1,   message: '/CLEAR' },
 
   // options
   { id: 103, next: 7,   message: 'I am.' },
