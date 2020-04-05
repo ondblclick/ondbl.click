@@ -10,7 +10,7 @@ class Chat extends PureComponent {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.onKeyDown, true);
+    document.addEventListener('keydown', this.onKeyDown);
   }
 
   componentWillUnmount() {

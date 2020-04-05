@@ -11,7 +11,7 @@ class Devtools extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.onKeyDown);
+    document.addEventListener('keydown', this.onKeyDown, true);
   }
 
   componentWillUnmount() {
@@ -23,6 +23,8 @@ class Devtools extends Component {
   }
 
   onKeyDown = (e) => {
+    this.state.active && e.stopPropagation();
+
     if (e.keyCode === 192 && !this.state.active) {
       e.preventDefault();
       return this.setState({ active: true });
