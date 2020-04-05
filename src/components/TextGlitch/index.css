@@ -1,6 +1,7 @@
 .TextGlitch {
   position: relative;
   margin: 0 auto;
+  user-select: none;
 }
 
 .TextGlitch::before,
