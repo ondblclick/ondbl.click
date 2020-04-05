@@ -1,0 +1,37 @@
+.TextGlitch {
+  position: relative;
+  margin: 0 auto;
+}
+
+.TextGlitch::before,
+.TextGlitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background-color: inherit;
+  clip: rect(0, 100vw, 0, 0);
+}
+
+.TextGlitch::before {
+  left: 0.06em;
+  text-shadow: 1px 0 green;
+  animation: glitch-effect 3s infinite linear alternate-reverse;
+}
+
+.TextGlitch::after {
+  left: 0.03em;
+  text-shadow: -1px 0 red;
+  animation: glitch-effect 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-effect {
+  0% { clip: rect(0.04em, 100vw, 0.58em, 0); }
+  20% { clip: rect(0.73em, 100vw, 0.07em, 0); }
+  40% { clip: rect(0.81em, 100vw, 0.34em, 0); }
+  60% { clip: rect(0.66em, 100vw, 1.1em, 0); }
+  80% { clip: rect(1.31em, 100vw, 0.99em, 0); }
+  100% { clip: rect(0.07em, 100vw, 1.11em, 0); }
+}

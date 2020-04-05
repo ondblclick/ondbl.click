@@ -5,7 +5,11 @@ import Main from '../../Main';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import Static from '../../Static';
+import TextGlitch from '../../TextGlitch';
 import withVariables from '../../../hocs/withVariables';
+
+const BACKGROUND_COLOR = '#222222';
+const FOREGROUND_COLOR = '#ffffff';
 
 class PageHome extends PureComponent {
   render() {
@@ -14,8 +18,13 @@ class PageHome extends PureComponent {
         <Header audio={this._audio} />
 
         <Main>
-          <Static style={{ flex: '1' }}>
-            {'This is just a memory journey.'}
+          <Static style={{ flex: '1', fontSize: '1.5rem' }}>
+            <TextGlitch
+              foregroundColor={FOREGROUND_COLOR}
+              backgroundColor={BACKGROUND_COLOR}
+            >
+              {'This is just a memory journey.'}
+            </TextGlitch>
           </Static>
         </Main>
 
@@ -26,5 +35,5 @@ class PageHome extends PureComponent {
 }
 
 export default compose(
-  withVariables({ '--background-color': '#222222' }),
+  withVariables({ '--background-color': BACKGROUND_COLOR }),
 )(PageHome);
