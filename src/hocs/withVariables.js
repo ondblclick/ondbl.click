@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 export default (vars) => (Comp) => {
   class WithVariables extends Component {
     render() {
-      const str = Object.entries(vars).map(([k, v]) => `${k}: ${v};`);
+      const str = Object.entries(vars).map(([k, v]) => `${k}: ${v};`).join('\n');
 
       return(
         <>

@@ -1,9 +1,11 @@
-import React, { PureComponent } from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import React, { PureComponent, Suspense } from 'react';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
 
 import Devtools from '../Devtools';
+import Main from '../Main';
+import Static from '../Static';
 import PageHome from '../Page/Home';
 import PageDearEsther from '../Page/DearEsther';
 import PageFirewatch from '../Page/Firewatch';
@@ -38,19 +40,33 @@ document.addEventListener('mousemove', (e) => {
   }`;
 });
 
+class Loading extends PureComponent {
+  render() {
+    return (
+      <Main>
+        <Static>
+          {'Loading...'}
+        </Static>
+      </Main>
+    );
+  }
+}
+
 class App extends PureComponent {
   render() {
     return (
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <HashRouter history={history}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <Router history={history}>
             <Devtools />
-            <Switch>
-              <Route exact path="/" component={PageHome} />
-              <Route exact path="/dear-esther" component={PageDearEsther} />
-              <Route exact path="/firewatch" component={PageFirewatch} />
-            </Switch>
-          </HashRouter>
+            <Suspense fallback={<Loading />}>
+              <Switch>
+                <Route exact path="/" component={PageHome} />
+                <Route exact path="/dear-esther" component={PageDearEsther} />
+                <Route exact path="/firewatch" component={PageFirewatch} />
+              </Switch>
+            </Suspense>
+          </Router>
         </PersistGate>
       </Provider>
     );

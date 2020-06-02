@@ -26,7 +26,7 @@ class PageFirewatch extends PureComponent {
           <Static style={{ display: 'flex', alignItems: 'center', flex: '1', flexDirection: 'column', justifyContent: 'flex-end' }}>
             <Chat chat={chat} />
           </Static>
-          <Graphics style={{ flex: '2' }} type="perspective">
+          <Graphics style={{ flex: '1.5' }} type="perspective">
             <Layer l="1">
               <HenrySvg width="100%" height="100%" fill="#000000" />
             </Layer>

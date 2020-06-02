@@ -7,6 +7,7 @@
   --deg-x: 0;
   --font-size: 18px;
   --background-color: #222222;
+  --foreground-color: #EEEEEE;
 }
 
 body {
@@ -15,7 +16,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
-  color: #fff;
+  color: var(--foreground-color);
   font-size: var(--font-size);
   line-height: 1.4;
 }
@@ -65,4 +66,8 @@ body::before {
 
 .abzac::first-letter {
   padding-left: 3rem;
+}
+
+a {
+  color: inherit;
 }
