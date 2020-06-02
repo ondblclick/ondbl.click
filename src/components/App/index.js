@@ -1,5 +1,5 @@
 import React, { PureComponent, Suspense } from 'react';
-import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
 

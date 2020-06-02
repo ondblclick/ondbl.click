@@ -1,0 +1,21 @@
+.Chat {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.Chat__option {
+  color: var(--foreground-color);
+  margin-bottom: .5rem;
+  border-bottom: 1px solid var(--foreground-color);
+  padding-bottom: .25rem;
+}
+
+.Chat__option:focus {
+  box-shadow: none;
+}
+
+.Chat__option:hover {
+  opacity: .75;
+  cursor: pointer;
+}

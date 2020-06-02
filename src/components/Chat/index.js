@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { isArray } from 'lodash-es';
 
+import './index.css';
+
 class Chat extends PureComponent {
   constructor(props) {
     super(props);
@@ -48,13 +50,7 @@ class Chat extends PureComponent {
 
   render() {
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-        }}
-      >
+      <div className="Chat">
         {[...this.state.messages].reverse().map((m, i, a) => (
           <div
             key={m.message}
@@ -67,27 +63,29 @@ class Chat extends PureComponent {
               marginBottom: '1rem',
               border: '1px solid #ccc',
               padding: '.5rem 1rem',
-              borderRadius: '.5rem',
+              borderRadius:  m.author === 'D' ? '.75rem .75rem .75rem 0' : '.75rem .75rem 0 .75rem',
               opacity: 1 - (a.length - i) / 15 }}
           >
             {m.message}
           </div>
         ))}
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <div style={{ minHeight: 150, marginBottom: 100 }}>
           {isArray(this.next.message) && (
-            this.next.message.map((o) => (
-              <button
-                key={o}
-                onClick={() => this.onChange(this.find(this.find(o).next))}
-                style={{
-                  padding: '.5rem',
-                  border: '1px solid #ccc',
-                  color: '#fff'
-                }}
-              >
-                {this.find(o).message}
-              </button>
-            ))
+            <>
+              <div style={{ height: 1, backgroundColor: 'var(--foreground-color)', opacity: .5, margin: '1rem 0 2rem 0' }} />
+              {this.next.message.map((o) => (
+                <>
+                  <button
+                    key={o}
+                    onClick={() => this.onChange(this.find(this.find(o).next))}
+                    className="Chat__option"
+                  >
+                    {this.find(o).message}
+                  </button>
+                  <br />
+                </>
+              ))}
+            </>
           )}
         </div>
       </div>
