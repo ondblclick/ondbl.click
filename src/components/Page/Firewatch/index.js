@@ -10,7 +10,8 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import Chat from '../../Chat';
 import withVariables from '../../../hocs/withVariables';
-import { ReactComponent as HenrySvg } from './henry.svg';
+import { ReactComponent as HenrySvg1 } from './henry-1.svg';
+import { ReactComponent as HenrySvg2 } from './henry-2.svg';
 import _audio from './01.mp3';
 import chat from './chat';
 
@@ -28,7 +29,10 @@ class PageFirewatch extends PureComponent {
           </Static>
           <Graphics style={{ flex: '1.5' }} type="perspective">
             <Layer l="1">
-              <HenrySvg width="100%" height="100%" fill="#000000" />
+              <HenrySvg1 width="100%" height="100%" fill="#000000" />
+            </Layer>
+            <Layer l="2">
+              <HenrySvg2 width="100%" height="100%" fill="#000000" />
             </Layer>
           </Graphics>
         </Main>
