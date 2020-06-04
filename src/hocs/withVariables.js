@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 
 export default (vars) => (Comp) => {
-  class WithVariables extends Component {
+  class WithVariablesWrapper extends Component {
     render() {
       const str = Object.entries(vars).map(([k, v]) => `${k}: ${v};`).join('\n');
 
@@ -17,5 +17,5 @@ export default (vars) => (Comp) => {
     }
   }
 
-  return WithVariables;
+  return WithVariablesWrapper;
 }

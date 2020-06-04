@@ -69,7 +69,7 @@ class Chat extends PureComponent {
             {m.message}
           </div>
         ))}
-        <div style={{ minHeight: 150, marginBottom: 100 }}>
+        <div className="Chat__options-container">
           {isArray(this.next.message) && (
             <>
               <div style={{ height: 1, backgroundColor: 'var(--foreground-color)', opacity: .5, margin: '1rem 0 2rem 0' }} />

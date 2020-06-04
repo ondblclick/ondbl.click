@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { noop } from 'lodash-es';
 
 import Toolbar from '../Toolbar';
 import Button from '../Button';
@@ -7,7 +8,6 @@ import Button from '../Button';
 import './index.css';
 
 const BUTTON_COLOR = 'rgba(255, 255, 255, .15)';
-const BUTTON_SIZE = 24;
 
 class Header extends Component {
   constructor(props) {
@@ -59,12 +59,13 @@ class Header extends Component {
           {children}
           {audio
             ? muted
-              ? <Button onClick={this.onUnmute} glyph="VolumeOff" size={BUTTON_SIZE} color={BUTTON_COLOR} />
-              : <Button onClick={this.onMute} glyph="VolumeUp" size={BUTTON_SIZE} color={BUTTON_COLOR} />
+              ? <Button onClick={this.onUnmute} color={BUTTON_COLOR}>{'Unmute'}</Button>
+              : <Button onClick={this.onMute} color={BUTTON_COLOR}>{'Mute'}</Button>
             : null}
           {fullscreen
-            ? <Button onClick={this.onExitFullscreen} glyph="FullscreenExit" size={BUTTON_SIZE} color={BUTTON_COLOR} />
-            : <Button onClick={this.onRequestFullscreen} glyph="Fullscreen" size={BUTTON_SIZE} color={BUTTON_COLOR} />}
+            ? <Button onClick={this.onExitFullscreen} color={BUTTON_COLOR}>{'Exit fullscreen'}</Button>
+            : <Button onClick={this.onRequestFullscreen} color={BUTTON_COLOR}>{'Enter fullscreen'}</Button>}
+          <Button onClick={noop} color={BUTTON_COLOR}>{'Help'}</Button>
         </Toolbar>
       </>
     );

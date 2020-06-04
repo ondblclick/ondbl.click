@@ -2,6 +2,9 @@
   display: inline-block;
   cursor: pointer;
   user-select: none;
+  font-size: 1rem;
+  color: var(--foreground-color);
+  border: 1px solid transparent;
 }
 
 .Button:hover {
@@ -17,7 +20,7 @@
 }
 
 .Button--text.Button--active {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, .15);
+  border-bottom-color: rgba(255, 255, 255, .15);
 }
 
 .Button[disabled] {

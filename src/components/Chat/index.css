@@ -19,3 +19,9 @@
   opacity: .75;
   cursor: pointer;
 }
+
+.Chat__options-container {
+  min-height: 150px;
+  margin-bottom: 100px;
+  text-align: right;
+}

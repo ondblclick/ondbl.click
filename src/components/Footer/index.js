@@ -21,7 +21,6 @@ class Footer extends Component {
               key={string}
               disabled={this.props.locale === string}
               active={this.props.locale === string}
-              size={14}
               color={BUTTON_COLOR}
               onClick={() => this.props.dispatch({ type: 'LOCALE:CHANGE_LOCALE', payload: string })}
             >

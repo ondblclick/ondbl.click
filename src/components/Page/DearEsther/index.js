@@ -32,7 +32,7 @@ class PageDearEsther extends PureComponent {
 
         <Main>
           <Static style={{ display: 'flex', alignItems: 'center', flex: '1' }}>
-            <p className="abzac" style={{ margin: '1rem 0', fontFamily: 'Georgia', fontStyle: 'italic', fontSize: 22, color: '#CCCCCC', userSelect: 'none' }}>
+            <p className="abzac" style={{ margin: '1rem 0', fontFamily: 'Georgia', fontStyle: 'italic', fontSize: 22, color: '#CCCCCC' }}>
               {this._strings[this.props.locale]}
             </p>
           </Static>
