@@ -7,8 +7,6 @@ import Button from '../Button';
 
 import './index.css';
 
-const BUTTON_COLOR = 'rgba(255, 255, 255, .15)';
-
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -59,13 +57,13 @@ class Header extends Component {
           {children}
           {audio
             ? muted
-              ? <Button onClick={this.onUnmute} color={BUTTON_COLOR}>{'Unmute'}</Button>
-              : <Button onClick={this.onMute} color={BUTTON_COLOR}>{'Mute'}</Button>
+              ? <Button isMuted onClick={this.onUnmute}>{'Unmute'}</Button>
+              : <Button isMuted onClick={this.onMute}>{'Mute'}</Button>
             : null}
           {fullscreen
-            ? <Button onClick={this.onExitFullscreen} color={BUTTON_COLOR}>{'Exit fullscreen'}</Button>
-            : <Button onClick={this.onRequestFullscreen} color={BUTTON_COLOR}>{'Enter fullscreen'}</Button>}
-          <Button onClick={noop} color={BUTTON_COLOR}>{'Help'}</Button>
+            ? <Button isMuted onClick={this.onExitFullscreen}>{'Exit fullscreen'}</Button>
+            : <Button isMuted onClick={this.onRequestFullscreen}>{'Enter fullscreen'}</Button>}
+          <Button isMuted onClick={noop}>{'Help'}</Button>
         </Toolbar>
       </>
     );

@@ -9,6 +9,9 @@ import Main from '../../Main';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import withVariables from '../../../hocs/withVariables';
+import withTitle from '../../../hocs/withTitle';
+import { ReactComponent as Boat1 } from './boat-1.svg';
+import { ReactComponent as Boat2 } from './boat-2.svg';
 import { ReactComponent as DearEsther1Svg } from './dear-esther-1.svg';
 import { ReactComponent as DearEsther2Svg } from './dear-esther-2.svg';
 import { ReactComponent as DearEsther3Svg } from './dear-esther-3.svg';
@@ -47,6 +50,15 @@ class PageDearEsther extends PureComponent {
               <DearEsther3Svg width="100%" height="100%" fill="#FFFFFF" />
             </Layer>
           </Graphics>
+          <div style={{ position: 'absolute', bottom: 0, left: 40, right: 0 }}>
+            <Boat1 stroke="rgba(255, 255, 255, .15)" width={60} style={{ position: 'absolute', bottom: 10, left: 20 }}/>
+            <Boat2 stroke="rgba(255, 255, 255, .15)" width={80} style={{ position: 'absolute', bottom: 20, left: 140 }}/>
+            <Boat1 stroke="rgba(255, 255, 255, .15)" width={100} style={{ position: 'absolute', bottom: 0, left: 260 }}/>
+            <Boat2 stroke="rgba(255, 255, 255, .15)" width={60} style={{ position: 'absolute', bottom: 10, left: 380 }}/>
+            <Boat1 stroke="rgba(255, 255, 255, .15)" width={120} style={{ position: 'absolute', bottom: 20, left: 500 }}/>
+            <Boat2 stroke="rgba(255, 255, 255, .15)" width={80} style={{ position: 'absolute', bottom: 10, left: 620 }}/>
+            <Boat1 stroke="rgba(255, 255, 255, .15)" style={{ position: 'absolute', bottom: 10, left: 740 }}/>
+          </div>
         </Main>
 
         <Footer strings={this._strings} />
@@ -57,5 +69,6 @@ class PageDearEsther extends PureComponent {
 
 export default compose(
   connect((s) => ({ locale: s.locale })),
+  withTitle('Dear Esther'),
   withVariables({ '--background-color': '#1d2b3b' }),
 )(PageDearEsther);

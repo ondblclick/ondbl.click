@@ -4,23 +4,7 @@
   width: 100%;
 }
 
-.Chat__option {
-  color: var(--foreground-color);
-  margin-bottom: .5rem;
-  border-bottom: 1px solid var(--foreground-color);
-  padding-bottom: .25rem;
-}
-
-.Chat__option:focus {
-  box-shadow: none;
-}
-
-.Chat__option:hover {
-  opacity: .75;
-  cursor: pointer;
-}
-
-.Chat__options-container {
+.Chat__options {
   min-height: 150px;
   margin-bottom: 100px;
   text-align: right;

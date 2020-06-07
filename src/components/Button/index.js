@@ -6,7 +6,7 @@ import './index.css';
 
 class Button extends React.PureComponent {
   render() {
-    const { to, onClick, size, className, style, color, children, active, disabled } = this.props;
+    const { to, onClick, size, className, style, color, children, isActive, disabled, isMuted } = this.props;
 
     let result = null;
 
@@ -19,7 +19,7 @@ class Button extends React.PureComponent {
     }
 
     return React.cloneElement(result, {
-      className: classnames('Button Button--text', { 'Button--active': active }, className),
+      className: classnames('Button Button--text', { 'Button--is-active': isActive, 'Button--is-muted': isMuted }, className),
       style: { ...style, color, fontSize: size },
     }, children);
   }

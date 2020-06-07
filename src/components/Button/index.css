@@ -11,6 +11,10 @@
   opacity: 0.7;
 }
 
+.Button--is-muted {
+  opacity: .5;
+}
+
 .Button--icon {
   line-height: 0;
 }
@@ -19,8 +23,8 @@
   padding: .3rem;
 }
 
-.Button--text.Button--active {
-  border-bottom-color: rgba(255, 255, 255, .15);
+.Button--is-active {
+  border-bottom-color: var(--foreground-color);
 }
 
 .Button[disabled] {

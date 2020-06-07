@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { isArray } from 'lodash-es';
 
+import Button from '../Button';
+
 import './index.css';
 
 class Chat extends PureComponent {
@@ -69,19 +71,19 @@ class Chat extends PureComponent {
             {m.message}
           </div>
         ))}
-        <div className="Chat__options-container">
+        <div className="Chat__options">
           {isArray(this.next.message) && (
             <>
               <div style={{ height: 1, backgroundColor: 'var(--foreground-color)', opacity: .5, margin: '1rem 0 2rem 0' }} />
               {this.next.message.map((o) => (
                 <>
-                  <button
+                  <Button
                     key={o}
                     onClick={() => this.onChange(this.find(this.find(o).next))}
-                    className="Chat__option"
+                    isActive
                   >
                     {this.find(o).message}
-                  </button>
+                  </Button>
                   <br />
                 </>
               ))}

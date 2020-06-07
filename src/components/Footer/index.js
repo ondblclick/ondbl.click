@@ -6,8 +6,6 @@ import Button from '../Button';
 
 import './index.css';
 
-const BUTTON_COLOR = 'rgba(255, 255, 255, .15)';
-
 class Footer extends Component {
   render() {
     const { children } = this.props;
@@ -18,10 +16,10 @@ class Footer extends Component {
         {this.props.strings
           ? Object.keys(this.props.strings).map((string) => {
             return <Button
+              isMuted
               key={string}
               disabled={this.props.locale === string}
-              active={this.props.locale === string}
-              color={BUTTON_COLOR}
+              isActive={this.props.locale === string}
               onClick={() => this.props.dispatch({ type: 'LOCALE:CHANGE_LOCALE', payload: string })}
             >
               {string}
