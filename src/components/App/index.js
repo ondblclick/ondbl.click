@@ -10,6 +10,7 @@ import PageHome from '../Page/Home';
 import PageDearEsther from '../Page/DearEsther';
 import PageFirewatch from '../Page/Firewatch';
 import PageAchievements from '../Page/Achievements';
+import PageMagic8Ball from '../Page/Magic8Ball';
 import PageNotFound from '../Page/NotFound';
 import { store, persistor } from '../../store';
 import history from '../../history';
@@ -68,6 +69,7 @@ class App extends PureComponent {
                 <Route exact path="/dear-esther" component={PageDearEsther} />
                 <Route exact path="/firewatch" component={PageFirewatch} />
                 <Route exact path="/achievements" component={PageAchievements} />
+                <Route exact path="/magic-8-ball" component={PageMagic8Ball} />
                 <Route component={PageNotFound} />
               </Switch>
             </Suspense>
