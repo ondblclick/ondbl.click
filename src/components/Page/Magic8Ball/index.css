@@ -1,8 +1,8 @@
 .PageMagic8Ball__answer {
   opacity: 0;
-  transform: rotate(-25deg);
+  transform: rotate(-25deg) scale(.9) translateZ(0);
   transition: all 1s ease;
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
 .PageMagic8Ball__answer::before {
@@ -30,6 +30,6 @@
 }
 
 .PageMagic8Ball__answer--ready {
-  transform: rotate(0);
+  transform: rotate(0) scale(1) translateZ(0);
   opacity: 1;
 }
