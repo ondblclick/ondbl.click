@@ -29,6 +29,20 @@ class PageDearEsther extends PureComponent {
     'ua-UA': 'Дорога Естер. Я втратив лік часу і забув, скільки тут перебуваю і скільки разів бував тут. Види тепер настільки знайомі, що доводиться нагадувати собі, дивитися, куди йти. Я міг би наосліп бродити по цим скелям, краях цих обривів, не боячись оступитися і зірватися в море. Крім того, я завжди вважав, що якщо людина падає, то дуже важливо, щоб вона тримала очі широко відкритими.',
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      boats: range(0, 21).map((i) => {
+        const size = (4 - Math.floor(i / 7)) * 25 + Math.random() * 25;
+        const left = `${random(0, 100)}%`;
+        const bottom = Math.floor(i / 7) * 40 + random(0, 30 * Math.ceil(i / 7));
+        const color = `rgba(255,255,255,${0.2 - Math.ceil(i / 7) * 0.05 + 0.05})`;
+
+        return { i, size, left, bottom, color };
+      })
+    };
+  }
+
   render() {
     return (
       <>
@@ -52,14 +66,8 @@ class PageDearEsther extends PureComponent {
             </Layer>
           </Graphics>
           <div style={{ position: 'absolute', bottom: 0, left: 40, right: 0 }}>
-            {range(0, 21).map((i) => {
+            {this.state.boats.map(({ i, size, color, bottom, left }) => {
               const Boat = Math.random() > .5 ? Boat1 : Boat2;
-              const size = (4 - Math.floor(i / 7)) * 25 + Math.random() * 25;
-              const left = `${random(0, 100)}%`;
-              const bottom = Math.floor(i / 7) * 40 + random(0, 30 * Math.ceil(i / 7));
-              console.log(bottom);
-              const marginLeft = -(size / 2);
-              const color = `rgba(255,255,255,${0.2 - Math.ceil(i / 7) * 0.05 + 0.05})`;
 
               return (
                 <Boat
@@ -67,7 +75,7 @@ class PageDearEsther extends PureComponent {
                   width={size}
                   height={size}
                   stroke={color}
-                  style={{ position: 'absolute', bottom, left, marginLeft }}
+                  style={{ position: 'absolute', bottom, left, marginLeft: -(size / 2) }}
                 />
               );
             })}
