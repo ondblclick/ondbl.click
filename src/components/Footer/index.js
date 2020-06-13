@@ -8,10 +8,10 @@ import './index.css';
 
 class Footer extends Component {
   render() {
-    const { children } = this.props;
+    const { children, style } = this.props;
 
     return (
-      <Toolbar className="Footer">
+      <Toolbar className="Footer" style={style}>
         {children}
         {this.props.strings
           ? Object.keys(this.props.strings).map((string) => {

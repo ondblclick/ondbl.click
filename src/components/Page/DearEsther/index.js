@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { range, random } from 'lodash-es';
 
 import Layer from '../../Layer';
 import Graphics from '../../Graphics';
@@ -51,17 +52,29 @@ class PageDearEsther extends PureComponent {
             </Layer>
           </Graphics>
           <div style={{ position: 'absolute', bottom: 0, left: 40, right: 0 }}>
-            <Boat1 stroke="rgba(255, 255, 255, .15)" width={60} style={{ position: 'absolute', bottom: 10, left: 20 }}/>
-            <Boat2 stroke="rgba(255, 255, 255, .15)" width={80} style={{ position: 'absolute', bottom: 20, left: 140 }}/>
-            <Boat1 stroke="rgba(255, 255, 255, .15)" width={100} style={{ position: 'absolute', bottom: 0, left: 260 }}/>
-            <Boat2 stroke="rgba(255, 255, 255, .15)" width={60} style={{ position: 'absolute', bottom: 10, left: 380 }}/>
-            <Boat1 stroke="rgba(255, 255, 255, .15)" width={120} style={{ position: 'absolute', bottom: 20, left: 500 }}/>
-            <Boat2 stroke="rgba(255, 255, 255, .15)" width={80} style={{ position: 'absolute', bottom: 10, left: 620 }}/>
-            <Boat1 stroke="rgba(255, 255, 255, .15)" style={{ position: 'absolute', bottom: 10, left: 740 }}/>
+            {range(0, 21).map((i) => {
+              const Boat = Math.random() > .5 ? Boat1 : Boat2;
+              const size = (4 - Math.floor(i / 7)) * 25 + Math.random() * 25;
+              const left = `${random(0, 100)}%`;
+              const bottom = Math.floor(i / 7) * 40 + random(0, 30 * Math.ceil(i / 7));
+              console.log(bottom);
+              const marginLeft = -(size / 2);
+              const color = `rgba(255,255,255,${0.2 - Math.ceil(i / 7) * 0.05 + 0.05})`;
+
+              return (
+                <Boat
+                  key={i}
+                  width={size}
+                  height={size}
+                  stroke={color}
+                  style={{ position: 'absolute', bottom, left, marginLeft }}
+                />
+              );
+            })}
           </div>
         </Main>
 
-        <Footer strings={this._strings} />
+        <Footer strings={this._strings} style={{ marginTop: -40 }} />
       </>
     );
   }
