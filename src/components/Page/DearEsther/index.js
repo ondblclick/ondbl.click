@@ -33,10 +33,10 @@ class PageDearEsther extends PureComponent {
     super(props);
     this.state = {
       boats: range(0, 21).map((i) => {
-        const size = (4 - Math.floor(i / 7)) * 25 + Math.random() * 25;
+        const size = ((4 - Math.floor(i / 7)) * 25 + Math.random() * 25) * 0.7;
         const left = `${random(0, 100)}%`;
         const bottom = Math.floor(i / 7) * 40 + random(0, 30 * Math.ceil(i / 7));
-        const color = `rgba(255,255,255,${0.2 - Math.ceil(i / 7) * 0.05 + 0.05})`;
+        const color = `rgba(255,255,255,${0.1 - Math.floor(i / 7) * 0.05 + 0.05})`;
 
         return { i, size, left, bottom, color };
       })

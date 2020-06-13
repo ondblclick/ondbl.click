@@ -100,6 +100,7 @@ class PageMagic8Ball extends PureComponent {
                     display: 'flex',
                   }}
                 >
+                  {/* <canvas ref={r => this.canvas = r} /> */}
                   <div
                     className={cn('PageMagic8Ball__answer', { 'PageMagic8Ball__answer--ready': this.state.answerReady })}
                     style={{

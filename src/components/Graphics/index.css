@@ -22,6 +22,7 @@
 }
 
 .Graphics__layer-container--perspective {
+  /* will-change: transform; */
   transform-style: preserve-3d;
   transform-origin: center center;
   transform:
@@ -44,6 +45,7 @@
 }
 
 .Graphics__layer-container--parallax .Graphics__layer {
+  /* will-change: transform; */
   transform:
     translateX(var(--translate-x))
     translateY(var(--translate-y))
