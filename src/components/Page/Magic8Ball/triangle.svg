@@ -1,16 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="116px" height="99px" viewBox="0 0 116 99" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
-    <title>Group</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard" transform="translate(-76.000000, -69.000000)" fill="#191970">
-            <g id="Group" transform="translate(75.000000, 69.000000)">
-                <polygon id="Triangle" transform="translate(59.000000, 53.301270) scale(1, -1) translate(-59.000000, -53.301270) " points="59 10 109 96.6025404 9 96.6025404"></polygon>
-                <polygon id="Path" fill-opacity="0.4" points="9.66539505 8.07272791 108.407644 8.07272791 106.025244 0.125114899 12.025149 0.125114899"></polygon>
-                <polygon id="Path" fill-opacity="0.3" transform="translate(28.826980, 55.843551) rotate(240.000000) translate(-28.826980, -55.843551) " points="-20.5441448 59.8173577 78.198104 59.8173577 75.8157043 51.8697447 -18.1843909 51.8697447"></polygon>
-                <polygon id="Path" fill-opacity="0.5" transform="translate(89.196980, 55.843551) scale(-1, 1) rotate(240.000000) translate(-89.196980, -55.843551) " points="39.8258552 59.8173577 138.568104 59.8173577 136.185704 51.8697447 42.1856091 51.8697447"></polygon>
-            </g>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="116" height="99" viewBox="0 0 116 99">
+  <g fill="#191970" fill-rule="evenodd">
+    <path d="M58 97l50-87H8z"/>
+    <path fill-opacity=".4" d="M9 8h98l-2-8H11z"/>
+    <path fill-opacity=".3" d="M56 97L7 11l-6 6 47 81z"/>
+    <path fill-opacity=".5" d="M60 96l49-85 6 6-47 82z"/>
+  </g>
 </svg>
