@@ -76,7 +76,7 @@ class PageMagic8Ball extends PureComponent {
         <Header />
 
         <Main>
-          <Graphics type="parallax">
+          <Graphics type="parallax" className={cn({ 'PageMagic8Ball--shake': !this.state.answerReady })}>
             <Layer l="1">
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
                 <div
