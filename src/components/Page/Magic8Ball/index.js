@@ -9,6 +9,7 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import withTitle from '../../../hocs/withTitle';
 import withVariables from '../../../hocs/withVariables';
+import { ReactComponent as Triangle } from './triangle.svg';
 import cn from 'classnames';
 
 import './index.css';
@@ -50,10 +51,12 @@ class PageMagic8Ball extends PureComponent {
       answer: null,
       answerReady: true,
     };
+    this.idleTimeout = setTimeout(() => this.setState({ answer: 'You<br/>there?' }), 5000);
   }
 
   onClick = () => {
     const { answer: old, previous } = this.state;
+    if (this.idleTimeout) clearTimeout(this.idleTimeout);
     if (!this.state.answerReady) return;
 
     this.setState({ answerReady: false });
@@ -82,7 +85,8 @@ class PageMagic8Ball extends PureComponent {
                     height: '50vmin',
                     border: '1px solid #555',
                     borderRadius: '50%',
-                    backgroundColor: 'rgba(255,255,255,.05)'
+                    backgroundColor: 'rgba(255,255,255,.05)',
+                    boxShadow: 'inset 0 0 0 10px rgba(255,255,255,0.025)'
                   }}
                 />
               </div>
@@ -100,21 +104,34 @@ class PageMagic8Ball extends PureComponent {
                     cursor: 'pointer',
                     pointerEvents: 'all',
                     display: 'flex',
+                    boxShadow: 'inset 0 0 0 10px rgba(0,0,0,0.3)',
                   }}
                 >
                   <div
                     className={cn('PageMagic8Ball__answer', { 'PageMagic8Ball__answer--ready': this.state.answerReady && this.state.answer })}
                     style={{
                       margin: 'auto',
-                      width: '63%',
-                      height: '52%',
+                      width: '100%',
+                      height: '100%',
                       position: 'relative',
-                      top: 20,
+                      top: 18,
                       textAlign: 'center',
                       display: 'flex',
                       paddingBottom: '2.5rem'
                     }}
                   >
+                    <Triangle
+                      width={'100%'}
+                      height={'100%'}
+                      style={{
+                        position: 'absolute',
+                        left: 0,
+                        top: 0,
+                        bottom: 0,
+                        right: 0,
+                        transform: 'scale(.7)',
+                      }}
+                    />
                     <div className="PageMagic8Ball__answer-text" dangerouslySetInnerHTML={{ __html: this.state.answer }} />
                   </div>
                 </div>
