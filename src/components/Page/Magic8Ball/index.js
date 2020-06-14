@@ -7,6 +7,7 @@ import Graphics from '../../Graphics';
 import Main from '../../Main';
 import Header from '../../Header';
 import Footer from '../../Footer';
+import withTitle from '../../../hocs/withTitle';
 import withVariables from '../../../hocs/withVariables';
 import cn from 'classnames';
 
@@ -47,12 +48,13 @@ class PageMagic8Ball extends PureComponent {
     this.state = {
       previous: [],
       answer: null,
-      answerReady: false,
+      answerReady: true,
     };
   }
 
   onClick = () => {
     const { answer: old, previous } = this.state;
+    if (!this.state.answerReady) return;
 
     this.setState({ answerReady: false });
 
@@ -100,9 +102,8 @@ class PageMagic8Ball extends PureComponent {
                     display: 'flex',
                   }}
                 >
-                  {/* <canvas ref={r => this.canvas = r} /> */}
                   <div
-                    className={cn('PageMagic8Ball__answer', { 'PageMagic8Ball__answer--ready': this.state.answerReady })}
+                    className={cn('PageMagic8Ball__answer', { 'PageMagic8Ball__answer--ready': this.state.answerReady && this.state.answer })}
                     style={{
                       margin: 'auto',
                       width: '63%',
@@ -130,4 +131,5 @@ class PageMagic8Ball extends PureComponent {
 
 export default compose(
   withVariables({ '--background-color': BACKGROUND_COLOR }),
+  withTitle('Magic 8 Ball'),
 )(PageMagic8Ball);

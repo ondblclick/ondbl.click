@@ -3,6 +3,8 @@
   transform: rotate(-20deg) scale(0.9);
   transition: all .7s linear;
   transition-timing-function: ease-out, cubic-bezier(.82, .1, .14, 1.12);
+  pointer-events: none;
+  user-select: none;
 }
 
 .PageMagic8Ball__answer::before {
