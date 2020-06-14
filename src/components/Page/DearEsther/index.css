@@ -1,0 +1,23 @@
+@keyframes wave {
+  50% { transform: translateY(.5em) rotate(5deg); }
+}
+
+.Boat:nth-of-type(5n + 1) {
+  animation: wave 2s 0s ease infinite;
+}
+
+.Boat:nth-of-type(5n + 2) {
+  animation: wave 2s .5s ease infinite;
+}
+
+.Boat:nth-of-type(5n + 3) {
+  animation: wave 2s 1s ease infinite;
+}
+
+.Boat:nth-of-type(5n + 4) {
+  animation: wave 2s 1.5s ease infinite;
+}
+
+.Boat:nth-of-type(5n + 5) {
+  animation: wave 2s 2s ease infinite;
+}

@@ -18,6 +18,8 @@ import { ReactComponent as DearEsther2Svg } from './dear-esther-2.svg';
 import { ReactComponent as DearEsther3Svg } from './dear-esther-3.svg';
 import _audio from './01.mp3';
 
+import './index.css';
+
 class PageDearEsther extends PureComponent {
   _audio = _audio
 
@@ -71,6 +73,7 @@ class PageDearEsther extends PureComponent {
 
               return (
                 <Boat
+                  className={'Boat'}
                   key={i}
                   width={size}
                   height={size}

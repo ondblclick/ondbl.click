@@ -5,10 +5,6 @@ import Main from '../../Main';
 import Header from '../../Header';
 import Footer from '../../Footer';
 import Static from '../../Static';
-import withVariables from '../../../hocs/withVariables';
-
-// const BACKGROUND_COLOR = '#222222';
-// const FOREGROUND_COLOR = '#ffffff';
 
 class PageAchievements extends PureComponent {
   render() {
@@ -28,6 +24,4 @@ class PageAchievements extends PureComponent {
   }
 }
 
-export default compose(
-  // withVariables({ '--background-color': BACKGROUND_COLOR }),
-)(PageAchievements);
+export default compose()(PageAchievements);
