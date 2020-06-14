@@ -117,7 +117,8 @@ class PageMagic8Ball extends PureComponent {
                       top: 18,
                       textAlign: 'center',
                       display: 'flex',
-                      paddingBottom: '2.5rem'
+                      paddingBottom: '2.5rem',
+                      paddingTop: '.5rem',
                     }}
                   >
                     <Triangle
