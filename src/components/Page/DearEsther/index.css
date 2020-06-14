@@ -1,10 +1,10 @@
-@keyframes wave {
+@keyframes boat-wave {
   50% { transform: translateY(.5em) rotate(5deg); }
 }
 
 .Boat {
   --animation-duration: 4s;
-  animation: wave var(--animation-duration) calc(var(--animation-duration) * 0) ease infinite;
+  animation: boat-wave var(--animation-duration) calc(var(--animation-duration) * 0) ease infinite;
 }
 
 .Boat:nth-of-type(5n + 1) { animation-delay: calc(var(--animation-duration) * 0); }

@@ -1,6 +1,6 @@
 @import "https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap";
 
-@keyframes shake {
+@keyframes magic-8-ball-shake {
   10%, 90% { transform: translate3d(-1rem, 0, 0); }
   20%, 80% { transform: translate3d(2rem, 0, 0); }
   30%, 50%, 70% { transform: translate3d(-4rem, 0, 0); }
@@ -8,7 +8,7 @@
 }
 
 .PageMagic8Ball--shake {
-  animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+  animation: magic-8-ball-shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
 }
 
