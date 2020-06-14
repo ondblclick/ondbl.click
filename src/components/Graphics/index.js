@@ -23,7 +23,7 @@ class Graphics extends React.Component {
       }, {});
 
     return (
-      <div className="Graphics" style={style}>
+      <div className={classnames('Graphics', `Graphics--${type}`)} style={style}>
         <div className={classnames('Graphics__layer-container', `Graphics__layer-container--${type}`)}>
           {Object.entries(layers).map(([k, v]) => (
             <div key={k} style={{

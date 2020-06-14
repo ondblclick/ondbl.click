@@ -3,6 +3,10 @@
   display: flex;
 }
 
+.Graphics--perspective {
+  perspective: var(--perspective);
+}
+
 .Graphics__layer-container {
   margin: auto;
   width: 80%;
@@ -17,16 +21,12 @@
   top: 0;
   bottom: 0;
   right: 0;
-  transform-origin: center center;
   pointer-events: none;
 }
 
 .Graphics__layer-container--perspective {
-  /* will-change: transform; */
   transform-style: preserve-3d;
-  transform-origin: center center;
   transform:
-    perspective(var(--perspective))
     rotateX(var(--deg-x))
     rotateY(var(--deg-y))
     translateZ(0);
@@ -45,7 +45,6 @@
 }
 
 .Graphics__layer-container--parallax .Graphics__layer {
-  /* will-change: transform; */
   transform:
     translateX(var(--translate-x))
     translateY(var(--translate-y))
