@@ -1,6 +1,8 @@
 .PageMagic8Ball__answer {
   opacity: 0;
-  transition: opacity 1s linear;
+  transform: rotate(-20deg) scale(0.9);
+  transition: all .7s linear;
+  transition-timing-function: ease-out, cubic-bezier(.82, .1, .14, 1.12);
 }
 
 .PageMagic8Ball__answer::before {
@@ -24,9 +26,10 @@
   text-transform: uppercase;
   font-size: .8rem;
   font-weight: bold;
-  text-shadow: 0 0 3px rgba(0,0,0,.5);
+  text-shadow: 0 0 3px rgba(0,0,0,.8);
 }
 
 .PageMagic8Ball__answer--ready {
   opacity: 1;
+  transform: rotate(0) scale(1);
 }

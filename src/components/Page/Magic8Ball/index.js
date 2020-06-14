@@ -71,7 +71,7 @@ class PageMagic8Ball extends PureComponent {
         <Header />
 
         <Main>
-          <Graphics type="perspective">
+          <Graphics type="parallax">
             <Layer l="1">
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
                 <div
