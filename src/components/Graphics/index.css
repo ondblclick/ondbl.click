@@ -15,6 +15,10 @@
   transition: all .05s ease;
 }
 
+.Graphics__layer-container--transition {
+  transition: all .2s ease;
+}
+
 .Graphics__layer {
   position: absolute;
   left: 0;
@@ -27,8 +31,8 @@
 .Graphics__layer-container--perspective {
   transform-style: preserve-3d;
   transform:
-    rotateX(var(--deg-x))
-    rotateY(var(--deg-y))
+    rotateX(calc(var(--raw-y) * 1deg * -1))
+    rotateY(calc(var(--raw-x) * 1deg))
     translateZ(0);
 }
 

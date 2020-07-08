@@ -1,0 +1,51 @@
+.Eye {
+  animation: 6s linear 0s infinite alternate eye-wave;
+  cursor: none;
+}
+
+@keyframes eye-wave {
+  0% {
+    --raw-x: 0;
+    --raw-y: 0;
+  }
+  10% {
+    --raw-x: 0;
+    --raw-y: 0;
+  }
+  20% {
+    --raw-x: -4;
+    --raw-y: -4;
+  }
+  30% {
+    --raw-x: -8;
+    --raw-y: -8;
+  }
+  40% {
+    --raw-x: -8;
+    --raw-y: -4;
+  }
+  50% {
+    --raw-x: -8;
+    --raw-y: 0;
+  }
+  60% {
+    --raw-x: 4;
+    --raw-y: 0;
+  }
+  65% {
+    --raw-x: 8;
+    --raw-y: -4;
+  }
+  70% {
+    --raw-x: 12;
+    --raw-y: 0;
+  }
+  80% {
+    --raw-x: 12;
+    --raw-y: -4;
+  }
+  90% {
+    --raw-x: 0;
+    --raw-y: 0;
+  }
+}

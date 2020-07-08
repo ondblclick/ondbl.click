@@ -11,6 +11,7 @@ import PageDearEsther from '../Page/DearEsther';
 import PageFirewatch from '../Page/Firewatch';
 import PageAchievements from '../Page/Achievements';
 import PageMagic8Ball from '../Page/Magic8Ball';
+import PageEye from '../Page/Eye';
 import PageNotFound from '../Page/NotFound';
 import { store, persistor } from '../../store';
 import history from '../../history';
@@ -31,16 +32,12 @@ document.addEventListener('mousemove', (e) => {
   x = e.pageX;
   y = e.pageY;
 
-  const degX = (x - center.x) / rect.width * K;
-  const degY = (y - center.y) / rect.height * K;
-  const translateX = (x - center.x) / rect.width * K;
-  const translateY = (y - center.y) / rect.height * K;
+  const rawX = (x - center.x) / rect.width * K;
+  const rawY = (y - center.y) / rect.height * K;
 
   vars.innerText = `:root {
-    --deg-y: ${degX.toFixed(F)}deg;
-    --deg-x: ${-degY.toFixed(F)}deg;
-    --translate-x-delta: ${translateX.toFixed(F)}px;
-    --translate-y-delta: ${translateY.toFixed(F)}px;
+    --raw-x: ${rawX.toFixed(F)};
+    --raw-y: ${rawY.toFixed(F)};
   }`;
 });
 
@@ -70,6 +67,7 @@ class App extends PureComponent {
                 <Route exact path="/firewatch" component={PageFirewatch} />
                 <Route exact path="/achievements" component={PageAchievements} />
                 <Route exact path="/magic-8-ball" component={PageMagic8Ball} />
+                <Route exact path="/eye" component={PageEye} />
                 <Route component={PageNotFound} />
               </Switch>
             </Suspense>
