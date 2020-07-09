@@ -25,8 +25,20 @@ let y = 0;
 const rect = document.querySelector('body').getBoundingClientRect();
 const center = { x: Math.round(rect.width / 2), y: Math.round(rect.height / 2) };
 const vars = document.querySelector('#perspective-vars');
-const K = 15;
+const K = 16;
 const F = 1;
+
+// a.map((i, index) => `${((100 / a.length) * index).toFixed(1)}% { --raw-x: 1.75 * ${i[0].toFixed(1)}; --raw-y: 1.75 * ${i[1].toFixed(1)}; }`)
+
+// document.addEventListener('mousedown', (e) => {
+//   x = e.pageX;
+//   y = e.pageY;
+
+//   const rawX = (x - center.x) / rect.width * K;
+//   const rawY = (y - center.y) / rect.height * K;
+
+//   console.log(rawX, rawY);
+// });
 
 document.addEventListener('mousemove', (e) => {
   x = e.pageX;
