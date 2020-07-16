@@ -21,7 +21,16 @@ class PageFirewatch extends PureComponent {
   render() {
     return (
       <>
-        <Header audio={this._audio} />
+        <Header
+          audio={this._audio}
+          help={(
+            <>
+              <div>{'# hit `space` to see the next chat message.'}</div>
+              <div>{'# hit `esc` to close the help modal.'}</div>
+              <div>{'# pick an option when prompted.'}</div>
+            </>
+          )}
+        />
 
         <Main>
           <Static style={{ display: 'flex', alignItems: 'center', flex: '1', flexDirection: 'column', justifyContent: 'flex-end' }}>

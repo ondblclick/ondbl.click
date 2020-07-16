@@ -22,9 +22,9 @@ import './index.css';
 let x = 0;
 let y = 0;
 
+const root = document.documentElement;
 const rect = document.querySelector('body').getBoundingClientRect();
 const center = { x: Math.round(rect.width / 2), y: Math.round(rect.height / 2) };
-const vars = document.querySelector('#perspective-vars');
 const K = 16;
 const F = 1;
 
@@ -40,17 +40,15 @@ const F = 1;
 //   console.log(rawX, rawY);
 // });
 
-document.addEventListener('mousemove', (e) => {
+root.addEventListener('mousemove', e => {
   x = e.pageX;
   y = e.pageY;
 
   const rawX = (x - center.x) / rect.width * K;
   const rawY = (y - center.y) / rect.height * K;
 
-  vars.innerText = `:root {
-    --raw-x: ${rawX.toFixed(F)};
-    --raw-y: ${rawY.toFixed(F)};
-  }`;
+  root.style.setProperty('--raw-x', rawX.toFixed(F));
+  root.style.setProperty('--raw-y', rawY.toFixed(F));
 });
 
 class Loading extends PureComponent {

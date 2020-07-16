@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { noop } from 'lodash-es';
 
 import Toolbar from '../Toolbar';
 import Button from '../Button';
@@ -12,15 +11,25 @@ class Header extends Component {
     super(props);
     this.state = {
       fullscreen: false,
+      help: false,
     };
   }
 
   componentDidMount() {
     document.addEventListener('fullscreenchange', this.onFullscreenChange);
+    document.addEventListener('keydown', this.onKeyDown);
   }
 
   componentWillUnmount() {
     document.removeEventListener('fullscreenchange', this.onFullscreenChange);
+    document.removeEventListener('keydown', this.onKeyDown);
+  }
+
+  onKeyDown = (e) => {
+    // 27 === ESC
+    if (e.keyCode === 27 && this.state.help) {
+      this.setState({ help: false });
+    }
   }
 
   onFullscreenChange = () => {
@@ -46,9 +55,18 @@ class Header extends Component {
     this.props.dispatch({ type: 'AUDIO:MUTED', payload: false });
   }
 
+  onHelpOpen = () => {
+    this.setState({ help: true });
+  }
+
+  onHelpClose = () => {
+    this.setState({ help: false });
+  }
+
   render() {
     const { fullscreen } = this.state;
-    const { children, audio, muted } = this.props;
+    const { children, audio, muted, help } = this.props;
+    console.log(help, this.state.help)
 
     return (
       <>
@@ -63,7 +81,15 @@ class Header extends Component {
           {fullscreen
             ? <Button isMuted onClick={this.onExitFullscreen}>{'Exit fullscreen'}</Button>
             : <Button isMuted onClick={this.onRequestFullscreen}>{'Enter fullscreen'}</Button>}
-          <Button isMuted onClick={noop}>{'Help'}</Button>
+          {help
+            && <Button isMuted onClick={this.onHelpOpen}>{'Help'}</Button>}
+          {help && this.state.help
+            && (
+              <div className="Header__help" onClick={this.onHelpClose}>
+                <div className="Header__help-contents" onClick={e => e.stopPropagation()}>
+                  {help}
+                </div>
+              </div>)}
         </Toolbar>
       </>
     );
