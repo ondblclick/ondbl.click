@@ -66,7 +66,6 @@ class Header extends Component {
   render() {
     const { fullscreen } = this.state;
     const { children, audio, muted, help } = this.props;
-    console.log(help, this.state.help)
 
     return (
       <>

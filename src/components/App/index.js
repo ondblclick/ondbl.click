@@ -9,13 +9,13 @@ import Static from '../Static';
 import PageHome from '../Page/Home';
 import PageDearEsther from '../Page/DearEsther';
 import PageFirewatch from '../Page/Firewatch';
-import PageAchievements from '../Page/Achievements';
 import PageMagic8Ball from '../Page/Magic8Ball';
 import PageEye from '../Page/Eye';
 import PageNotFound from '../Page/NotFound';
 import { store, persistor } from '../../store';
 import history from '../../history';
 import withTitle from '../../hocs/withTitle';
+import { ROUTES } from '../../constants/paths';
 
 import './index.css';
 
@@ -72,12 +72,11 @@ class App extends PureComponent {
             <Devtools />
             <Suspense fallback={<Loading />}>
               <Switch>
-                <Route exact path="/" component={PageHome} />
-                <Route exact path="/dear-esther" component={PageDearEsther} />
-                <Route exact path="/firewatch" component={PageFirewatch} />
-                <Route exact path="/achievements" component={PageAchievements} />
-                <Route exact path="/magic-8-ball" component={PageMagic8Ball} />
-                <Route exact path="/eye" component={PageEye} />
+                <Route exact path={ROUTES.ROOT} component={PageHome} />
+                <Route exact path={ROUTES.DEAR_ESTHER} component={PageDearEsther} />
+                <Route exact path={ROUTES.FIREWATCH} component={PageFirewatch} />
+                <Route exact path={ROUTES.MAGIC_8_BALL} component={PageMagic8Ball} />
+                <Route exact path={ROUTES.EYE} component={PageEye} />
                 <Route component={PageNotFound} />
               </Switch>
             </Suspense>

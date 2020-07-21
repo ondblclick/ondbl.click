@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { isArray } from 'lodash-es';
+import { connect } from 'react-redux';
 
 import Button from '../Button';
 
@@ -14,7 +15,7 @@ class Chat extends PureComponent {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.onKeyDown);
+    document.addEventListener('keydown', this.onKeyDown, true);
   }
 
   componentWillUnmount() {
@@ -36,7 +37,10 @@ class Chat extends PureComponent {
   }
 
   onKeyDown = (e) => {
+    if (this.props.devtools_active) return;
+
     if (e.keyCode === 32) {
+      e.preventDefault();
       if (isArray(this.next.message)) return;
       if (this.next.message === '/CLEAR') return this.onChange(this.find(this.next.next), []);
 
@@ -95,4 +99,4 @@ class Chat extends PureComponent {
   }
 }
 
-export default Chat;
+export default connect((s) => ({ devtools_active: s.devtools_active }))(Chat);

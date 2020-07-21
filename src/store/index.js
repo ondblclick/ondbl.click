@@ -4,7 +4,13 @@ import storage from 'redux-persist/lib/storage';
 
 import devtools from '../middlewares/devtools';
 
-const defaultState = { locale: 'en-US', muted: false, devtools_messages: [], devtools_config_items: { 'devtools-background-color': 'rgba(0,0,0,0.75)' } };
+const defaultState = {
+  locale: 'en-US',
+  muted: false,
+  devtools_messages: [],
+  devtools_config_items: { 'devtools-background-color': 'rgba(0,0,0,0.75)' },
+  devtools_active: false,
+};
 const persistConfig = { key: 'root', storage };
 
 const persistedReducer = persistReducer(persistConfig, (state, action) => {
@@ -16,6 +22,9 @@ const persistedReducer = persistReducer(persistConfig, (state, action) => {
 
   if (action.type === 'DEVTOOLS:MESSAGE')
     return { ...state, devtools_messages: [action.payload, ...state.devtools_messages] };
+
+  if (action.type === 'DEVTOOLS:SET_ACTIVE')
+    return { ...state, devtools_active: action.payload };
 
   if (action.type === 'DEVTOOLS:CLEAR_MESSAGES')
     return { ...state, devtools_messages: [] };
