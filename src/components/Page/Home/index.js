@@ -3,7 +3,7 @@ import { compose } from 'redux';
 
 import Main from '../../Main';
 import Header from '../../Header';
-import Footer from '../../Footer';
+
 import Static from '../../Static';
 import TextGlitch from '../../TextGlitch';
 import withVariables from '../../../hocs/withVariables';
@@ -27,8 +27,6 @@ class PageHome extends PureComponent {
             </TextGlitch>
           </Static>
         </Main>
-
-        <Footer strings={this._strings} />
       </>
     );
   }

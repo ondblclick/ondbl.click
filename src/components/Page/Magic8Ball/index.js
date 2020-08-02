@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'react';
 import { compose } from 'redux';
 import { sample } from 'lodash-es';
+import qs from 'query-string';
 
 import Layer from '../../Layer';
 import Graphics from '../../Graphics';
 import Main from '../../Main';
 import Header from '../../Header';
-import Footer from '../../Footer';
+
 import withTitle from '../../../hocs/withTitle';
 import withVariables from '../../../hocs/withVariables';
 import { ReactComponent as Triangle } from './triangle.svg';
@@ -46,9 +47,10 @@ const preprocess = (previous) => {
 class PageMagic8Ball extends PureComponent {
   constructor(props) {
     super(props);
+    const answer = props.location?.state?.answer;
     this.state = {
       previous: [],
-      answer: null,
+      answer: answer || null,
       answerReady: true,
     };
     this.idleTimeout = setTimeout(() => this.setState({ answer: 'You<br/>there?' }), 5000);
@@ -140,8 +142,6 @@ class PageMagic8Ball extends PureComponent {
             </Layer>
           </Graphics>
         </Main>
-
-        <Footer strings={this._strings} />
       </>
     );
   }

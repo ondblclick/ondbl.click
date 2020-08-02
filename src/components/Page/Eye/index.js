@@ -7,7 +7,7 @@ import Layer from '../../Layer';
 import Graphics from '../../Graphics';
 import Main from '../../Main';
 import Header from '../../Header';
-import Footer from '../../Footer';
+
 import withTitle from '../../../hocs/withTitle';
 import withVariables from '../../../hocs/withVariables';
 
@@ -126,8 +126,6 @@ class PageMagic8Ball extends PureComponent {
             </Layer>
           </Graphics>
         </Main>
-
-        <Footer strings={this._strings} />
       </>
     );
   }

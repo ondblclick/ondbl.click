@@ -7,7 +7,7 @@ import Graphics from '../../Graphics';
 import Static from '../../Static';
 import Main from '../../Main';
 import Header from '../../Header';
-import Footer from '../../Footer';
+
 import Chat from '../../Chat';
 import withVariables from '../../../hocs/withVariables';
 import { ReactComponent as HenrySvg1 } from './henry-1.svg';
@@ -45,8 +45,6 @@ class PageFirewatch extends PureComponent {
             </Layer>
           </Graphics>
         </Main>
-
-        <Footer />
       </>
     );
   }
