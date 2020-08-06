@@ -11,6 +11,7 @@ import PageDearEsther from '../Page/DearEsther';
 import PageFirewatch from '../Page/Firewatch';
 import PageMagic8Ball from '../Page/Magic8Ball';
 import PageEye from '../Page/Eye';
+import PageScarface from '../Page/Scarface';
 import { store, persistor } from '../../store';
 import history from '../../history';
 import withTitle from '../../hocs/withTitle';
@@ -76,6 +77,7 @@ class App extends PureComponent {
                 <Route exact path={ROUTES.FIREWATCH} component={PageFirewatch} />
                 <Route exact path={ROUTES.MAGIC_8_BALL} component={PageMagic8Ball} />
                 <Route exact path={ROUTES.EYE} component={PageEye} />
+                <Route exact path={ROUTES.SCARFACE} component={PageScarface} />
 
                 <Redirect to={{ pathname: ROUTES.MAGIC_8_BALL, state: { answer: 'Got</br>lost?' } }} />
               </Switch>
