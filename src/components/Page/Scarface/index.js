@@ -33,7 +33,7 @@ class Scarface extends Component {
 
     this.canvas = React.createRef();
     this.state = {
-      pixels: this.textToPixels(query.text.toUpperCase() || 'WORLD IS YOURS.. '),
+      pixels: this.textToPixels(query.text?.toUpperCase() || 'WORLD IS YOURS.. '),
       rows: range(0, ROWS),
       cols: range(0, COLS),
     };
