@@ -1,6 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { compose } from 'redux';
 import { range } from 'lodash-es';
+import { withRouter } from 'react-router-dom';
+import qs from 'query-string';
 
 import Main from '../../Main';
 import Header from '../../Header';
@@ -8,36 +10,50 @@ import Header from '../../Header';
 import withVariables from '../../../hocs/withVariables';
 import { l } from './letter';
 
-const BACKGROUND_COLOR = '#222222';
+const BACKGROUND_COLOR = '#02050A';
 
 const COLS = 126;
 const ROWS = 9;
-const SIZE = 24;
-const GAP = SIZE / 6;
-const CANVAS_WIDTH = COLS * (SIZE / 2) + (COLS - 1) * GAP;
-const CANVAS_HEIGHT = ROWS * SIZE + (ROWS - 1) * GAP;
+const WIDTH = 6;
+const HEIGHT = 12;
+const GAP_X = WIDTH / 6;
+const GAP_Y = HEIGHT / 6;
+const CANVAS_WIDTH = COLS * WIDTH + (COLS - 1) * GAP_X;
+const CANVAS_HEIGHT = ROWS * HEIGHT + (ROWS - 1) * GAP_Y;
+const DOT_RADIUS = WIDTH / 3.5;
+const PI_X2 = 2 * Math.PI;
+const DEBUG = false;
 
-class Scarface extends PureComponent {
+let offset = 0;
+
+class Scarface extends Component {
   constructor(props) {
     super(props);
+    const query = qs.parse(props.location.search);
+
     this.canvas = React.createRef();
     this.state = {
-      pixels: this.textToPixels('WORLD IS YOURS.. '),
-      offset: 0,
+      pixels: this.textToPixels(query.text.toUpperCase() || 'WORLD IS YOURS.. '),
       rows: range(0, ROWS),
       cols: range(0, COLS),
     };
+  }
+
+  shouldComponentUpdate() {
+    return false;
   }
 
   componentDidMount() {
     const { pixels } = this.state;
 
     this.draw();
-    setInterval(() => this.setState((s) => ({ offset: (s.offset + 1) % pixels[0].length })), 30);
+    setInterval(() => { offset = (offset + 1) % pixels[0].length }, 30);
   }
 
   draw = () => {
-    const { pixels, offset, rows, cols } = this.state;
+    const { pixels, rows, cols } = this.state;
+    if (DEBUG) console.time('frame');
+
     const context = this.canvas.current.getContext('2d');
 
     context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -46,27 +62,37 @@ class Scarface extends PureComponent {
       cols.forEach((x) => {
         if (pixels[y][(x + offset) % pixels[0].length] === '1') {
           context.fillStyle = 'rgba(255,255,255,0.3)';
-          // context.beginPath();
-          // context.arc(
-          //   (x * SIZE / 2) + x * GAP + SIZE / 4,
-          //   y * SIZE + y * GAP + SIZE / 4,
-          //   SIZE / 5,
-          //   0,
-          //   2 * Math.PI);
-          // context.arc(
-          //   (x * SIZE / 2) + x * GAP + SIZE / 4,
-          //   y * SIZE + y * GAP + SIZE * 3 / 4,
-          //   SIZE / 5,
-          //   0,
-          //   2 * Math.PI);
-          // context.fill();
-          context.fillRect((x * SIZE / 2) + x * GAP, y * SIZE + y * GAP, SIZE / 2, SIZE);
-        } else {
-          context.fillStyle = 'rgba(255,255,255,0.01)';
-          context.fillRect((x * SIZE / 2) + x * GAP, y * SIZE + y * GAP, SIZE / 2, SIZE);
+          const xPos = (x * WIDTH) + x * GAP_X + WIDTH / 2;
+          const yPosBasis = y * HEIGHT + y * GAP_Y;
+
+          context.beginPath();
+          context.fillStyle = x % 2 === 0
+            ? '#607F87'
+            : '#87C7BF';
+          context.arc(
+            xPos,
+            yPosBasis + HEIGHT * 1 / 4 - 1,
+            DOT_RADIUS,
+            0,
+            PI_X2);
+          context.fill();
+
+          context.beginPath();
+          context.fillStyle = x % 2 === 0
+            ? '#CA1B3D'
+            : '#FEEAD4';
+          context.arc(
+            xPos,
+            yPosBasis + HEIGHT * 3 / 4 + 1,
+            DOT_RADIUS,
+            0,
+            PI_X2);
+          context.fill();
         }
       });
     });
+
+    if (DEBUG) console.timeEnd('frame');
 
     requestAnimationFrame(this.draw);
   }
@@ -81,6 +107,8 @@ class Scarface extends PureComponent {
   }
 
   render() {
+    console.log('render');
+
     return (
       <>
         <Header audio={this._audio} />
@@ -94,5 +122,6 @@ class Scarface extends PureComponent {
 }
 
 export default compose(
+  withRouter,
   withVariables({ '--background-color': BACKGROUND_COLOR }),
 )(Scarface);
