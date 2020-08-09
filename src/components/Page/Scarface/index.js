@@ -6,11 +6,11 @@ import qs from 'query-string';
 
 import Main from '../../Main';
 import Header from '../../Header';
-
 import withVariables from '../../../hocs/withVariables';
 import { l } from './letter';
+import _audio from './01.mp3';
 
-const BACKGROUND_COLOR = '#02050A';
+const BACKGROUND_COLOR = '#152238';
 
 const COLS = 126;
 const ROWS = 9;
@@ -27,13 +27,15 @@ const DEBUG = false;
 let offset = 0;
 
 class Scarface extends Component {
+  _audio = _audio
+
   constructor(props) {
     super(props);
     const query = qs.parse(props.location.search);
 
     this.canvas = React.createRef();
     this.state = {
-      pixels: this.textToPixels(query.text?.toUpperCase() || 'WORLD IS YOURS.. '),
+      pixels: this.textToPixels(query.text?.toUpperCase() || ' THE WORLD IS YOURS.. '),
       rows: range(0, ROWS),
       cols: range(0, COLS),
     };
@@ -52,6 +54,7 @@ class Scarface extends Component {
 
   draw = () => {
     const { pixels, rows, cols } = this.state;
+    const rowLength = pixels[0].length;
     if (DEBUG) console.time('frame');
 
     const context = this.canvas.current.getContext('2d');
@@ -60,8 +63,7 @@ class Scarface extends Component {
 
     rows.forEach((y) => {
       cols.forEach((x) => {
-        if (pixels[y][(x + offset) % pixels[0].length] === '1') {
-          context.fillStyle = 'rgba(255,255,255,0.3)';
+        if (pixels[y][(x + offset) % rowLength] === '1') {
           const xPos = (x * WIDTH) + x * GAP_X + WIDTH / 2;
           const yPosBasis = y * HEIGHT + y * GAP_Y;
 
@@ -99,7 +101,7 @@ class Scarface extends Component {
 
   textToPixels = (text) => {
     const res = text.split('')
-      .map((letter) => l(letter).split(' '));
+      .map((letter) => (l(letter) || l('#')).split(' '));
 
     return range(0, res[0].length)
       .map((i) => res.map((j) => j[i]).join(''))
@@ -114,7 +116,14 @@ class Scarface extends Component {
         <Header audio={this._audio} />
 
         <Main>
-          <canvas ref={this.canvas} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} style={{ width: '100%', margin: 'auto' }} />
+          <div style={{
+            width: '100%',
+            padding: '15vmin 0',
+            margin: 'auto',
+            backgroundColor: 'rgba(0,0,0,.5)',
+          }}>
+            <canvas ref={this.canvas} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} style={{ width: '100%' }} />
+          </div>
         </Main>
       </>
     );
