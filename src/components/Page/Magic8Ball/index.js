@@ -53,10 +53,10 @@ class PageMagic8Ball extends PureComponent {
       answer: answer || null,
       answerReady: true,
     };
-    this.idleTimeout = setTimeout(() => this.setState({ answer: 'You<br/>there?' }), 5000);
+    this.idleTimeout = setTimeout(() => this.onClick('You<br/>there?'), 5000);
   }
 
-  onClick = () => {
+  onClick = (answer) => {
     const { answer: old, previous } = this.state;
     if (this.idleTimeout) clearTimeout(this.idleTimeout);
     if (!this.state.answerReady) return;
@@ -66,7 +66,7 @@ class PageMagic8Ball extends PureComponent {
     setTimeout(() => {
       this.setState({
         answerReady: true,
-        answer: preprocess(previous),
+        answer: answer || preprocess(previous),
         previous: [old, ...previous]
       });
     }, 1100);
