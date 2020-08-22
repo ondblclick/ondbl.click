@@ -33,6 +33,8 @@ class Scarface extends Component {
     super(props);
     const query = qs.parse(props.location.search);
 
+    this.frame = null;
+    this.interval = null;
     this.canvas = React.createRef();
     this.state = {
       pixels: this.textToPixels(query.text?.toUpperCase() || ' THE WORLD IS YOURS.. '),
@@ -49,7 +51,12 @@ class Scarface extends Component {
     const { pixels } = this.state;
 
     this.draw();
-    setInterval(() => { offset = (offset + 1) % pixels[0].length }, 30);
+    this.interval = setInterval(() => { offset = (offset + 1) % pixels[0].length }, 30);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+    cancelAnimationFrame(this.frame);
   }
 
   draw = () => {
@@ -96,7 +103,7 @@ class Scarface extends Component {
 
     if (DEBUG) console.timeEnd('frame');
 
-    requestAnimationFrame(this.draw);
+    this.frame = requestAnimationFrame(this.draw);
   }
 
   textToPixels = (text) => {
