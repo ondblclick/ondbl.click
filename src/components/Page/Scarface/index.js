@@ -116,8 +116,6 @@ class Scarface extends Component {
   }
 
   render() {
-    console.log('render');
-
     return (
       <>
         <Header audio={this._audio} />
