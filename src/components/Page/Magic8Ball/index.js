@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { compose } from 'redux';
 import { sample } from 'lodash-es';
-import qs from 'query-string';
 
 import Layer from '../../Layer';
 import Graphics from '../../Graphics';
