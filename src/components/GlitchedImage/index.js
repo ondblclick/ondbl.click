@@ -73,9 +73,12 @@ class GlitchedImage extends Component {
     }
 
     if (this.contexts) {
+      this.contexts.forEach((c, i) => {
+        c.clearRect(0, 0, 500, 500);
+      });
+
       if (this.glitches) {
         this.contexts.forEach((c, i) => {
-          c.clearRect(0, 0, 500, 500);
           c.drawImage(this.origins[i], 0, 0, 500, 500, random(-3, 3), 0, 500, 500);
         });
 
@@ -92,7 +95,6 @@ class GlitchedImage extends Component {
         });
       } else {
         this.contexts.forEach((c, i) => {
-          c.clearRect(0, 0, 500, 500);
           c.drawImage(this.origins[i], 0, 0);
         });
       }
