@@ -54,7 +54,7 @@ class PageObabelie extends PureComponent {
         <Header />
 
         <Main>
-          <Graphics style={{ flex: '1' }} type="perspective">
+          <Graphics style={{ flex: '1' }} type="parallax">
             <Layer l="1">
               <div style={{ width: '80%', height: '80%', background: 'rgba(0,0,0,0.25)', margin: '10%' }} />
             </Layer>
@@ -67,7 +67,7 @@ class PageObabelie extends PureComponent {
               />
             </Layer>
           </Graphics>
-          <Graphics style={{ flex: '1' }} type="perspective">
+          <Graphics style={{ flex: '1' }} type="parallax">
             <Layer l="1">
               <div style={{ width: '80%', height: '80%', background: 'rgba(255,255,255,0.25)', margin: '10%' }} />
             </Layer>
