@@ -50,10 +50,10 @@ class GlitchedImage extends Component {
 
   getGlitched = () => {
     return range(0, random(3, 7)).map(() => ({
-      fromX: random(0, 500),
-      fromY: random(0, 500),
-      toX: random(0, 500),
-      toY: random(0, 500),
+      fromX: random(-50, 450),
+      fromY: random(-50, 450),
+      toX: random(-50, 450),
+      toY: random(-50, 450),
       w: random(50, 500),
       h: random(1, 50),
     }));
