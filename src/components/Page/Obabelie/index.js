@@ -11,6 +11,9 @@ import GlitchedImage from '../../GlitchedImage';
 import withVariables from '../../../hocs/withVariables';
 import shapes from './shapes';
 
+import './index.css';
+
+const SHAPES = Object.keys(shapes);
 const BACKGROUND_COLOR = '#222222';
 
 class PageObabelie extends PureComponent {
@@ -19,8 +22,8 @@ class PageObabelie extends PureComponent {
     this.canvas1 = React.createRef();
     this.canvas2 = React.createRef();
     this.state = {
-      left: sample(shapes),
-      right: sample(shapes),
+      left: sample(SHAPES),
+      right: sample(SHAPES),
     };
   }
 
@@ -28,9 +31,10 @@ class PageObabelie extends PureComponent {
     return (
       <>
         <GlitchedImage
+          shapes={shapes}
           canvases={[
-            [this.state.left[0], () => this.canvas1.current],
-            [this.state.right[0], () => this.canvas2.current],
+            [this.state.left, () => this.canvas1.current],
+            [this.state.right, () => this.canvas2.current],
           ]}
         />
 
@@ -39,27 +43,35 @@ class PageObabelie extends PureComponent {
         <Main>
           <Graphics style={{ flex: '1' }} type="parallax">
             <Layer l="1">
-              <div style={{ width: '80%', height: '80%', background: this.state.left[1], margin: '10%' }} />
+              <div
+                className="PageObabelie__backdrop"
+                style={{ background: shapes[this.state.left][1] }}
+                onClick={() => this.setState({ left: sample(SHAPES.filter((i) => i !== this.state.left)) })}
+              />
             </Layer>
             <Layer l="2">
               <canvas
                 ref={this.canvas1}
                 width="500"
                 height="500"
-                style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}
+                className="PageObabelie__canvas"
               />
             </Layer>
           </Graphics>
           <Graphics style={{ flex: '1' }} type="parallax">
             <Layer l="1">
-              <div style={{ width: '80%', height: '80%', background: this.state.right[1], margin: '10%' }} />
+              <div
+                className="PageObabelie__backdrop"
+                style={{ background: shapes[this.state.right][1] }}
+                onClick={() => this.setState({ right: sample(SHAPES.filter((i) => i !== this.state.right)) })}
+              />
             </Layer>
             <Layer l="2">
               <canvas
                 ref={this.canvas2}
                 width="500"
                 height="500"
-                style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}
+                className="PageObabelie__canvas"
               />
             </Layer>
           </Graphics>

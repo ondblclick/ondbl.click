@@ -1,0 +1,14 @@
+.PageObabelie__backdrop {
+  width: 80%;
+  height: 80%;
+  margin: 10%;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.PageObabelie__canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
