@@ -83,6 +83,7 @@ class GlitchedImage extends Component {
       shadowX: random(-10, 10),
       shadowY: random(-10, 10),
       color: sample(SMPTE),
+      offset: random(-25, 25),
       glitches: range(0, random(2, 5)).map(() => {
         const fromX = random(-50, 350);
         const fromY = random(-50, 350);
@@ -125,7 +126,7 @@ class GlitchedImage extends Component {
           c.filter = `drop-shadow(${this.glitches.shadowX}px ${this.glitches.shadowY}px 0 ${this.glitches.color})`;
         });
 
-        const r = random(-10, 10);
+        const r = random(-10, 10) + this.glitches.offset;
 
         this.contexts.forEach((c, i) => {
           c.drawImage(this.origins[i], 0, 0, 500, 500, r, 0, 500, 500);
