@@ -1,18 +1,29 @@
 import { Component } from 'react';
-import { random, range, sample } from 'lodash-es';
+import { random, range, sample, compact } from 'lodash-es';
 
 const DEBUG = false;
 const SMPTE = [
-  'rgba(180,180,16,.5)',
-  'rgba(16,180,180,.5)',
-  'rgba(16,180,16,.5)',
-  'rgba(180,16,180,.5)',
-  'rgba(104,104,104,.5)',
-  'rgba(180,180,180,.5)',
-  'rgba(180,16,16,.5)',
-  'rgba(16,16,180,.5)',
-  'rgba(16,16,16,.5)',
+  'rgba(0,255,255,.5)',
+  'rgba(255,0,255,.5)',
+  'rgba(255,255,0,.5)',
+  // 'rgba(180,180,16,.5)',
+  // 'rgba(16,180,180,.5)',
+  // 'rgba(16,180,16,.5)',
+  // 'rgba(180,16,180,.5)',
+  // 'rgba(104,104,104,.5)',
+  // 'rgba(180,180,180,.5)',
+  // 'rgba(180,16,16,.5)',
+  // 'rgba(16,16,180,.5)',
+  // 'rgba(16,16,16,.5)',
 ];
+
+const withFilter = (filter, context, draw, keepOld) => {
+  const old = context.filter;
+
+  context.filter = `${keepOld ? old : ''} ${filter}`;
+  draw();
+  context.filter = old;
+}
 
 class GlitchedImage extends Component {
   constructor(props) {
@@ -34,13 +45,15 @@ class GlitchedImage extends Component {
   }
 
   componentDidUpdate(oldProps) {
-    if (
-      oldProps.canvases[0][0] !== this.props.canvases[0][0]
-      || oldProps.canvases[1][0] !== this.props.canvases[1][0]
-    ) {
-      this.contexts = null;
-      this.canvases = null;
-      this.origins = null;
+    for (let i = 0; i < this.props.canvases.length; i++) {
+      if (
+        oldProps.canvases[i][0] !== this.props.canvases[i][0]
+        || oldProps.canvases[i][1] !== this.props.canvases[i][1]
+      ) {
+        this.contexts = null;
+        this.canvases = null;
+        this.origins = null;
+      }
     }
   }
 
@@ -61,26 +74,31 @@ class GlitchedImage extends Component {
       this.glitchesEndTimeout = setTimeout(() => {
         this.glitches = null;
         this.startGlitching();
-      }, random(50, 150));
+      }, random(100, 250));
     }, random(150, 500));
   }
 
   getGlitched = () => {
-    return range(0, random(3, 7)).map(() => {
-      const h = random(1, 50);
+    return {
+      shadowX: random(-10, 10),
+      shadowY: random(-10, 10),
+      color: sample(SMPTE),
+      glitches: range(0, random(2, 5)).map(() => {
+        const fromX = random(-50, 350);
+        const fromY = random(-50, 350);
 
-      return ({
-        fromX: random(-50, 450),
-        fromY: random(-50, 450),
-        toX: random(-50, 450),
-        toY: random(-50, 450),
-        w: random(50, 500),
-        h,
-        color: Math.random() > .5 && h < 15
-          ? sample(SMPTE)
-          : null,
-      });
-    });
+        return {
+          fromX: fromX,
+          fromY: fromY,
+          toX: fromX + random(-100, 100),
+          toY: fromY + random(-100, 100),
+          w: random(350, 500),
+          h: random(5, 100),
+          invert: random(1, 100),
+          opacity: random(25, 50),
+        }
+      }),
+    }
   }
 
   draw = () => {
@@ -90,11 +108,10 @@ class GlitchedImage extends Component {
       const c = this.props.canvases
         .map((canvas) => canvas[1]?.()?.getContext?.('2d'));
 
-      if (c[0] && c[1]) {
+      if (compact(c).length) {
         this.contexts = c;
         this.canvases = this.contexts.map(c => c.canvas);
         this.origins = this.props.canvases.map(c => this.props.shapes[c[0]][0]);
-        console.log(this.contexts, this.canvases, this.origins);
       }
     }
 
@@ -105,24 +122,31 @@ class GlitchedImage extends Component {
 
       if (this.glitches) {
         this.contexts.forEach((c, i) => {
-          c.drawImage(this.origins[i], 0, 0, 500, 500, random(-3, 3), 0, 500, 500);
+          c.filter = `drop-shadow(${this.glitches.shadowX}px ${this.glitches.shadowY}px 0 ${this.glitches.color})`;
         });
 
-        this.glitches.forEach((glitch) => {
+        const r = random(-10, 10);
+
+        this.contexts.forEach((c, i) => {
+          c.drawImage(this.origins[i], 0, 0, 500, 500, r, 0, 500, 500);
+        });
+
+        this.glitches.glitches.forEach((glitch) => {
           const { fromX, fromY, w, h, toX, toY } = glitch;
-          const offsetX = Math.random() > 0.5
-            ? random(-(fromX * 0.05), fromX * 0.05)
-            : 0;
 
-          this.contexts.forEach((c) => {
-            if (glitch.color) {
-              c.fillStyle = glitch.color;
-              c.fillRect(fromX + offsetX + 10, fromY + 10, w, h);
-            }
+          this.contexts.forEach((c, i) => {
+            withFilter(`opacity(${glitch.opacity}%)`, c, () => {
+              c.drawImage(this.origins[i], fromX, fromY, w, h, toX + r, toY, w, h);
+            });
 
-            c.drawImage(c.canvas, fromX + offsetX, fromY, w, h, toX + offsetX, toY, w, h);
-            c.clearRect(fromX + offsetX, fromY, w, h);
+            withFilter(`invert(${glitch.invert}%)`, c, () => {
+              c.drawImage(this.origins[i], fromX, fromY, w, h, fromX + r, fromY, w, h);
+            });
           });
+        });
+
+        this.contexts.forEach((c, i) => {
+          c.filter = 'none';
         });
       } else {
         this.contexts.forEach((c, i) => {
