@@ -79,11 +79,15 @@ class GlitchedImage extends Component {
   }
 
   getGlitched = () => {
+    const offsetX = random(-25, 25);
+    const offsetY = random(-25, 25);
+
     return {
-      shadowX: random(-10, 10),
-      shadowY: random(-10, 10),
+      shadowX: -(offsetX / 2),
+      shadowY: -(offsetY / 2),
       color: sample(SMPTE),
-      offset: random(-25, 25),
+      offsetX,
+      offsetY,
       glitches: range(0, random(2, 5)).map(() => {
         const fromX = random(-50, 350);
         const fromY = random(-50, 350);
@@ -96,7 +100,7 @@ class GlitchedImage extends Component {
           w: random(350, 500),
           h: random(5, 100),
           invert: random(1, 100),
-          opacity: random(25, 50),
+          opacity: random(50, 75),
         }
       }),
     }
@@ -126,10 +130,11 @@ class GlitchedImage extends Component {
           c.filter = `drop-shadow(${this.glitches.shadowX}px ${this.glitches.shadowY}px 0 ${this.glitches.color})`;
         });
 
-        const r = random(-10, 10) + this.glitches.offset;
+        const offsetX = random(-10, 10) + this.glitches.offsetX;
+        const offsetY = random(-10, 10) + this.glitches.offsetY;
 
         this.contexts.forEach((c, i) => {
-          c.drawImage(this.origins[i], 0, 0, 500, 500, r, 0, 500, 500);
+          c.drawImage(this.origins[i], 0, 0, 500, 500, offsetX, offsetY, 500, 500);
         });
 
         this.glitches.glitches.forEach((glitch) => {
@@ -137,11 +142,11 @@ class GlitchedImage extends Component {
 
           this.contexts.forEach((c, i) => {
             withFilter(`opacity(${glitch.opacity}%)`, c, () => {
-              c.drawImage(this.origins[i], fromX, fromY, w, h, toX + r, toY, w, h);
+              c.drawImage(this.origins[i], fromX, fromY, w, h, toX + offsetX, toY + offsetY, w, h);
             });
 
             withFilter(`invert(${glitch.invert}%)`, c, () => {
-              c.drawImage(this.origins[i], fromX, fromY, w, h, fromX + r, fromY, w, h);
+              c.drawImage(this.origins[i], fromX, fromY, w, h, fromX + offsetX, fromY + offsetY, w, h);
             });
           });
         });
