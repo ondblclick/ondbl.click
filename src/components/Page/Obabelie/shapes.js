@@ -1,4 +1,5 @@
-import img from './1.png';
+import hand1 from './1.svg';
+import hand2 from './2.svg';
 
 const createCanvas = () => {
   const canvas = document.createElement('canvas');
@@ -34,22 +35,31 @@ const createTrinagle = (fillStyle) => {
   return canvas;
 }
 
-const createPhoto = () => {
+const createHand = (color, image) => {
   const canvas = createCanvas();
   const context = canvas.getContext('2d');
-  const i = document.createElement('img');
+  const i = new Image();
 
-  i.onload = () => context.drawImage(i, 75, 75, 350, 350);
-  i.src = img;
+  i.onload = () => {
+    context.fillStyle = color;
+    context.fillRect(0, 0, 500, 500);
+
+    context.globalCompositeOperation = 'destination-in';
+    context.drawImage(i, 75, 75, 350, 350);
+  }
+
+  i.src = image;
 
   return canvas;
-}
+};
 
 export default {
   'white-circle': [createCircle('rgb(150,150,150)'), 'rgba(0,0,0,0.25)'],
   'black-trinagle': [createTrinagle('rgb(20,20,20)'), 'rgba(255,255,255,0.25)'],
   'black-circle': [createCircle('rgb(20,20,20)'), 'rgba(255,255,255,0.25)'],
   'white-trinagle': [createTrinagle('rgb(150,150,150)'), 'rgba(0,0,0,0.25)'],
-  'photo-1': [createPhoto(), 'rgba(255,255,255,0.25)'],
-  'photo-2': [createPhoto(), 'rgba(0,0,0,0.25)'],
+  'hand-1': [createHand('rgb(20,20,20)', hand1), 'rgba(255,255,255,0.25)'],
+  'hand-2': [createHand('rgb(150,150,150)', hand1), 'rgba(0,0,0,0.25)'],
+  'hand-3': [createHand('rgb(20,20,20)', hand2), 'rgba(255,255,255,0.25)'],
+  'hand-4': [createHand('rgb(150,150,150)', hand2), 'rgba(0,0,0,0.25)'],
 };
