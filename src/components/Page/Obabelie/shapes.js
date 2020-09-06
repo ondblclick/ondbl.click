@@ -35,7 +35,7 @@ const createTrinagle = (fillStyle) => {
   return canvas;
 }
 
-const createHand = (color, image) => {
+const createHand = (color, image, { w, h, scale }) => {
   const canvas = createCanvas();
   const context = canvas.getContext('2d');
   const i = new Image();
@@ -45,7 +45,7 @@ const createHand = (color, image) => {
     context.fillRect(0, 0, 500, 500);
 
     context.globalCompositeOperation = 'destination-in';
-    context.drawImage(i, 75, 75, 350, 350);
+    context.drawImage(i, (500 - (w / scale)) / 2, (500 - (h / scale)) / 2, w / scale, h / scale);
   }
 
   i.src = image;
@@ -53,13 +53,18 @@ const createHand = (color, image) => {
   return canvas;
 };
 
+const LIGHT_FG = 'rgb(150,150,150)';
+const DARK_FG = 'rgb(20,20,20)';
+const LIGHT_BG = 'rgba(255,255,255,0.25)';
+const DARG_BG = 'rgba(0,0,0,0.25)';
+
 export default {
-  'white-circle': [createCircle('rgb(150,150,150)'), 'rgba(0,0,0,0.25)'],
-  'black-trinagle': [createTrinagle('rgb(20,20,20)'), 'rgba(255,255,255,0.25)'],
-  'black-circle': [createCircle('rgb(20,20,20)'), 'rgba(255,255,255,0.25)'],
-  'white-trinagle': [createTrinagle('rgb(150,150,150)'), 'rgba(0,0,0,0.25)'],
-  'hand-1': [createHand('rgb(20,20,20)', hand1), 'rgba(255,255,255,0.25)'],
-  'hand-2': [createHand('rgb(150,150,150)', hand1), 'rgba(0,0,0,0.25)'],
-  'hand-3': [createHand('rgb(20,20,20)', hand2), 'rgba(255,255,255,0.25)'],
-  'hand-4': [createHand('rgb(150,150,150)', hand2), 'rgba(0,0,0,0.25)'],
+  'white-circle':   [createCircle(LIGHT_FG), DARG_BG],
+  'black-trinagle': [createTrinagle(DARK_FG), LIGHT_BG],
+  'black-circle':   [createCircle(DARK_FG), LIGHT_BG],
+  'white-trinagle': [createTrinagle(LIGHT_FG), DARG_BG],
+  'hand-1':         [createHand(DARK_FG, hand1, { w: 333, h: 668, scale: 1.5 }), LIGHT_BG],
+  'hand-2':         [createHand(LIGHT_FG, hand1, { w: 333, h: 668, scale: 1.5 }), DARG_BG],
+  'hand-3':         [createHand(DARK_FG, hand2, { w: 320, h: 687, scale: 1.5 }), LIGHT_BG],
+  'hand-4':         [createHand(LIGHT_FG, hand2, { w: 320, h: 687, scale: 1.5 }), DARG_BG],
 };
