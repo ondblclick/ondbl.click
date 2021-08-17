@@ -5,4 +5,5 @@ export const ROUTES = {
   MAGIC_8_BALL: '/magic-8-ball',
   EYE: '/eye',
   SCARFACE: '/scarface',
+  OBABELIE: '/obabelie',
 };
